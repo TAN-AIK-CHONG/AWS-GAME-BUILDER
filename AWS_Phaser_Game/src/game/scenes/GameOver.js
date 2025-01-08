@@ -24,7 +24,7 @@ export class GameOver extends Scene
             align: 'center'
         }).setOrigin(0.5).setDepth(100); 
 
-        this.add.text(400, 450, `Time: ${this.elapsedTime}`, { fontSize: '32px', fill: '#fff' });
+        this.add.text(512, 450, `Time: ${this.elapsedTime}`, { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
 
         EventBus.emit('current-scene-ready', this);
     }

@@ -10,9 +10,9 @@ export class Game extends Scene
 
     create ()
     {
-        this.cameras.main.setBackgroundColor(0x00ff00);
+        this.cameras.main.setBackgroundColor(0x669999);
 
-        this.add.image(512, 384, 'background').setAlpha(0.5);
+    
 
         // this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
         //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
@@ -35,7 +35,7 @@ export class Game extends Scene
 
         this.dino.play('walk');
 
-        this.cursors = this.input.keyboard.addKeys({
+        this.keys = this.input.keyboard.addKeys({
             up: Input.Keyboard.KeyCodes.W,
             down: Input.Keyboard.KeyCodes.S,
             left: Input.Keyboard.KeyCodes.A,
@@ -46,7 +46,7 @@ export class Game extends Scene
         this.physics.world.gravity.y = 1000;
 
         this.platforms = this.physics.add.staticGroup();
-        this.platforms.create(512, 500, 'platform').setScale(50, 1).refreshBody();
+        this.platforms.create(512, 600, 'brownPlatform').setScale(50, 1).refreshBody();
         this.physics.add.collider(this.dino, this.platforms);
 
         EventBus.emit('current-scene-ready', this);
@@ -64,12 +64,12 @@ export class Game extends Scene
         const isOnGround = this.dino.body.touching.down;
         const speed = isOnGround ? groundSpeed : airSpeed;
 
-        if (this.cursors.left.isDown && this.dino.x > minX)
+        if (this.keys.left.isDown && this.dino.x > minX)
         {
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true); //flip
         }
-        else if (this.cursors.right.isDown && this.dino.x < maxX)
+        else if (this.keys.right.isDown && this.dino.x < maxX)
         {
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false); //unflip
@@ -81,10 +81,11 @@ export class Game extends Scene
 
 
         // Implement jump logic
-        if ((this.cursors.up.isDown || this.cursors.space.isDown) && this.dino.body.touching.down)
+        if ((this.keys.up.isDown || this.keys.space.isDown) && this.dino.body.touching.down)
         {
             this.dino.setVelocityY(jumpVelocity);
         }
+
     }
 
     changeScene ()

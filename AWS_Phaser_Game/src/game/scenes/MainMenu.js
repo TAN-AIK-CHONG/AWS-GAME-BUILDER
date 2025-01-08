@@ -14,33 +14,44 @@ export class MainMenu extends Scene
     {
         this.add.image(512, 384, 'background');
 
-        this.logo = this.add.image(512, 300, 'logo').setDepth(100);
+        this.logo = this.add.image(512, 200, 'logo').setDepth(100);
 
         // Create a container for the buttons
-        const buttonContainer = this.add.container(512, 400);
+        const buttonContainer = this.add.container(512, 300);
 
-        // Add Play button image
-        const playButton = this.add.image(0, 0, 'uiButton').setDepth(100).setInteractive();
-        playButton.on('pointerdown', () => {
+        // Create Play button with text
+        const playButtonImage = this.add.image(0, 0, 'uiButton').setDepth(100).setInteractive();
+        const playButtonText = this.add.text(0, 0, 'Play', {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
+        }).setOrigin(0.5);
+        const playButton = this.add.container(0, 0, [playButtonImage, playButtonText]);
+        playButtonImage.on('pointerdown', () => {
             this.scene.start('Game');
         });
 
-        // Add Options button image
-        const optionsButton = this.add.image(0, 100, 'uiButton').setDepth(100).setInteractive();
-        optionsButton.on('pointerdown', () => {
-            // Add logic to handle options
+        // Create Options button with text
+        const optionsButtonImage = this.add.image(0, 120, 'uiButton').setDepth(100).setInteractive();
+        const optionsButtonText = this.add.text(0, 120, 'Options', {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
+        }).setOrigin(0.5);
+        const optionsButton = this.add.container(0, 0, [optionsButtonImage, optionsButtonText]);
+        optionsButtonImage.on('pointerdown', () => {
             console.log('Options button clicked');
         });
 
-        // Add About button image
-        const aboutButton = this.add.image(0, 200, 'uiButton').setDepth(100).setInteractive();
-        aboutButton.on('pointerdown', () => {
-            // Add logic to handle about
+        // Create About button with text
+        const aboutButtonImage = this.add.image(0, 240, 'uiButton').setDepth(100).setInteractive();
+        const aboutButtonText = this.add.text(0, 240, 'About', {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
+        }).setOrigin(0.5);
+        const aboutButton = this.add.container(0, 0, [aboutButtonImage, aboutButtonText]);
+        aboutButtonImage.on('pointerdown', () => {
             console.log('About button clicked');
         });
 
+        // Add buttons to the container
         buttonContainer.add([playButton, optionsButton, aboutButton]);
-            
+                
         EventBus.emit('current-scene-ready', this);
     }
 

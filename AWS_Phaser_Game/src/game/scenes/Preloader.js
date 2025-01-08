@@ -38,6 +38,7 @@ export class Preloader extends Scene
         this.load.image('brownPlatform', 'browntile.png');
         this.load.image('cactus', 'cactus.PNG');
         this.load.image('rock', 'rocktile.png')
+        this.load.image('pausebutton', 'pausebutton.png');
     }
 
     create ()

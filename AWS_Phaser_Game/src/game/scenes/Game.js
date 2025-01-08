@@ -16,8 +16,6 @@ export class Game extends Scene
         this.dino = this.physics.add.sprite(512,500,"dino").setScale(2);
         this.dino.setCollideWorldBounds(true);
 
-        this.lives = 3; 
-
         //offset so that dino touches platform
         this.dino.body.setOffset(0,-3);
 
@@ -30,6 +28,8 @@ export class Game extends Scene
         });
 
         this.dino.play('walk');
+
+        this.lives = 3;
 
         // add keybindings
         this.keys = this.input.keyboard.addKeys({
@@ -73,6 +73,13 @@ export class Game extends Scene
 
         // display time
         this.timeText = this.add.text(16, 48, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' });
+
+        // pause button
+        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.25).setDepth(100).setInteractive();
+        this.add.container(0, 0, [pauseButtonImage]);
+        pauseButtonImage.on('pointerdown', () => {
+            this.pauseGame();
+        })
 
         //start timer
         this.startTime = this.time.now;
@@ -118,7 +125,8 @@ export class Game extends Scene
         }
 
         //update time
-        const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+        this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+        const elapsedTime = this.elapsedTime;
         const hours = Math.floor(elapsedTime / 3600);
         const minutes = Math.floor((elapsedTime % 3600) / 60);
         const seconds = elapsedTime % 60;
@@ -136,7 +144,8 @@ export class Game extends Scene
         this.livesText.setText(`Lives: ${this.lives}`);
         if (this.lives <= 0)
         {
-            const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+            this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+            const elapsedTime =this.elapsedTime;
             const hours = Math.floor(elapsedTime / 3600);
             const minutes = Math.floor((elapsedTime % 3600) / 60);
             const seconds = elapsedTime % 60;
@@ -145,6 +154,17 @@ export class Game extends Scene
 
             this.scene.start('GameOver', { time: formattedTime });
         }
+    }
+
+    pauseGame()
+    {
+        this.scene.pause();
+        this.scene.launch('PauseMenu');
+    }
+
+    resumeGame()
+    {
+        this.scene.resume();
     }
 
     changeScene ()

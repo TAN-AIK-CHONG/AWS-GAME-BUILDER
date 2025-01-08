@@ -45,3 +45,5 @@ export class Preloader extends Scene
         this.scene.start('MainMenu');
     }
 }
+
+/* PRELOADER IS THE LOADING PAGE */

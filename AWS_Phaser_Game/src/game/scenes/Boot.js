@@ -20,3 +20,5 @@ export class Boot extends Scene
         this.scene.start('Preloader');
     }
 }
+
+/* BOOT LOADS ANY ASSETS IN FIRST, THEN PRELOADER IS THE LOADING PAGE*/

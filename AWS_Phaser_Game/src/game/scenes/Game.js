@@ -12,12 +12,6 @@ export class Game extends Scene
     {
         this.cameras.main.setBackgroundColor(0x669999);
 
-        // this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-        //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-        //     stroke: '#000000', strokeThickness: 8,
-        //     align: 'center'
-        // }).setOrigin(0.5).setDepth(100);
-
         this.dino = this.physics.add.sprite(512,500,"dino").setScale(2);
         this.dino.setCollideWorldBounds(true);
 
@@ -54,13 +48,21 @@ export class Game extends Scene
         this.physics.add.collider(this.dino, this.cactus, this.loseLife, null, this);
         cactus.body.setSize(cactus.width, cactus.height);
 
+        // display lives
         this.livesText = this.add.text(16, 16, `Lives: ${this.lives}`, { fontSize: '32px', fill: '#fff' });
+
+        // display time
+        this.timeText = this.add.text(16, 48, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' });
+
+        //start timer
+        this.startTime = this.time.now;
 
         EventBus.emit('current-scene-ready', this);
     }
 
     update ()
     {
+        //speed constants
         const groundSpeed = 300;
         const airSpeed = 200;
         const jumpVelocity = -500;
@@ -95,6 +97,15 @@ export class Game extends Scene
             this.dino.setVelocityY(jumpVelocity);
         }
 
+        //update time
+        const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+        const hours = Math.floor(elapsedTime / 3600);
+        const minutes = Math.floor((elapsedTime % 3600) / 60);
+        const seconds = elapsedTime % 60;
+
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        this.timeText.setText(`Time: ${formattedTime}`);
+
     }
 
     // Call this function when dino dies
@@ -105,7 +116,14 @@ export class Game extends Scene
         this.livesText.setText(`Lives: ${this.lives}`);
         if (this.lives <= 0)
         {
-            this.scene.start('GameOver');
+            const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+            const hours = Math.floor(elapsedTime / 3600);
+            const minutes = Math.floor((elapsedTime % 3600) / 60);
+            const seconds = elapsedTime % 60;
+
+            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            this.scene.start('GameOver', { time: formattedTime });
         }
     }
 

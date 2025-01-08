@@ -54,7 +54,7 @@ export class Game extends Scene
         cactus.body.setSize(cactus.width - 10, cactus.height);
         this.physics.add.collider(this.dino, this.cactus, this.loseLife, null, this);
 
-        // add rock (DO NOT EDIT CONFIGURATIONS I ALLIGNED IT)
+        // add rocks (DO NOT EDIT CONFIGURATIONS I ALLIGNED IT)
         this.rock = this.physics.add.staticGroup();
         const rock1 = this.rock.create(200, 500, 'rock').setScale(2).refreshBody();
         rock1.body.setSize(rock1.width, rock1.height);

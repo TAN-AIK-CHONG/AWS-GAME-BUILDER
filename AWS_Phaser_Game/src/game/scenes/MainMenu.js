@@ -16,14 +16,31 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(512, 300, 'logo').setDepth(100);
 
-        this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setDepth(100).setOrigin(0.5);
+        // Create a container for the buttons
+        const buttonContainer = this.add.container(512, 400);
 
-        this
-        
+        // Add Play button image
+        const playButton = this.add.image(0, 0, 'uiButton').setDepth(100).setInteractive();
+        playButton.on('pointerdown', () => {
+            this.scene.start('Game');
+        });
+
+        // Add Options button image
+        const optionsButton = this.add.image(0, 100, 'uiButton').setDepth(100).setInteractive();
+        optionsButton.on('pointerdown', () => {
+            // Add logic to handle options
+            console.log('Options button clicked');
+        });
+
+        // Add About button image
+        const aboutButton = this.add.image(0, 200, 'uiButton').setDepth(100).setInteractive();
+        aboutButton.on('pointerdown', () => {
+            // Add logic to handle about
+            console.log('About button clicked');
+        });
+
+        buttonContainer.add([playButton, optionsButton, aboutButton]);
+            
         EventBus.emit('current-scene-ready', this);
     }
 

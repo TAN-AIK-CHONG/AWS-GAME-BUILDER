@@ -12,6 +12,7 @@ export class Game extends Scene
     {
         this.cameras.main.setBackgroundColor(0x669999);
 
+        //dino sprite
         this.dino = this.physics.add.sprite(512,500,"dino").setScale(2);
         this.dino.setCollideWorldBounds(true);
 
@@ -20,6 +21,7 @@ export class Game extends Scene
         //offset so that dino touches platform
         this.dino.body.setOffset(0,-3);
 
+        // dino animations
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dino', { start: 0, end: 3 }),
@@ -29,6 +31,7 @@ export class Game extends Scene
 
         this.dino.play('walk');
 
+        // add keybindings
         this.keys = this.input.keyboard.addKeys({
             up: Input.Keyboard.KeyCodes.W,
             down: Input.Keyboard.KeyCodes.S,
@@ -37,16 +40,33 @@ export class Game extends Scene
             space: Input.Keyboard.KeyCodes.SPACE            
         });
 
+        // add gravity
         this.physics.world.gravity.y = 1000;
 
+        // add platform
         this.platforms = this.physics.add.staticGroup();
         const platform = this.platforms.create(512, 600, 'brownPlatform').setScale(50, 1).refreshBody();
         this.physics.add.collider(this.dino, this.platforms);
 
+        // add cactus (DO NOT EDIT CONFIGURATIONS I ALLIGNED IT)
         this.cactus = this.physics.add.staticGroup();
         const cactus = this.cactus.create(800, platform.y - platform.displayHeight / 2 - 25, 'cactus').setScale(1.8).refreshBody();
+        cactus.body.setSize(cactus.width - 10, cactus.height);
         this.physics.add.collider(this.dino, this.cactus, this.loseLife, null, this);
-        cactus.body.setSize(cactus.width, cactus.height);
+
+        // add rock (DO NOT EDIT CONFIGURATIONS I ALLIGNED IT)
+        this.rock = this.physics.add.staticGroup();
+        const rock1 = this.rock.create(200, 500, 'rock').setScale(2).refreshBody();
+        rock1.body.setSize(rock1.width, rock1.height);
+        rock1.body.setOffset(9,-0.2);
+        this.physics.add.collider(this.dino, this.rock, null, null, this);
+
+        this.rock = this.physics.add.staticGroup();
+        const rock2 = this.rock.create(300, 400, 'rock').setScale(2).refreshBody();
+        rock1.body.setSize(rock2.width, rock2.height);
+        rock1.body.setOffset(9,-0.2);
+        this.physics.add.collider(this.dino, this.rock, null, null, this);
+
 
         // display lives
         this.livesText = this.add.text(16, 16, `Lives: ${this.lives}`, { fontSize: '32px', fill: '#fff' });

@@ -37,6 +37,7 @@ export class Preloader extends Scene
         this.load.spritesheet('dino', 'DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
         this.load.image('brownPlatform', 'browntile.png');
         this.load.image('cactus', 'cactus.PNG');
+        this.load.image('rock', 'rocktile.png')
     }
 
     create ()

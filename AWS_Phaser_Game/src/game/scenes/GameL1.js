@@ -1,11 +1,11 @@
 import { EventBus } from '../EventBus';
 import { Scene, Input } from 'phaser';
 
-export class Game extends Scene
+export class GameL1 extends Scene
 {
     constructor ()
     {
-        super('Game');
+        super('GameL1');
     }
 
     create ()
@@ -169,6 +169,6 @@ export class Game extends Scene
 
     changeScene ()
     {
-        this.scene.start('GameOver');
+        this.scene.start('GameL2');
     }
 }

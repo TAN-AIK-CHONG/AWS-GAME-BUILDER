@@ -34,8 +34,9 @@ export class PauseMenu extends Scene
         EventBus.emit('current-scene-ready', this);
     }
 
+    // this portion need to edit, need to unpause the game at the correct level
     changeScene ()
     {
-        this.scene.start('Game');
+        this.scene.start('GameL1');
     }
 }

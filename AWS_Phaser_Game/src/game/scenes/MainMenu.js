@@ -26,7 +26,7 @@ export class MainMenu extends Scene
         }).setOrigin(0.5);
         const playButton = this.add.container(0, 0, [playButtonImage, playButtonText]);
         playButtonImage.on('pointerdown', () => {
-            this.scene.start('Game');
+            this.scene.start('GameL1');
         });
 
         // Create Options button with text
@@ -35,9 +35,6 @@ export class MainMenu extends Scene
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
         }).setOrigin(0.5);
         const optionsButton = this.add.container(0, 0, [optionsButtonImage, optionsButtonText]);
-        optionsButtonImage.on('pointerdown', () => {
-            console.log('Options button clicked');
-        });
 
         // Create About button with text
         const aboutButtonImage = this.add.image(0, 240, 'uiButton').setDepth(100).setInteractive();
@@ -45,8 +42,27 @@ export class MainMenu extends Scene
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
         }).setOrigin(0.5);
         const aboutButton = this.add.container(0, 0, [aboutButtonImage, aboutButtonText]);
+
+        // Create About popup with scroll image background
+        const aboutPopupBackground = this.add.image(512, 384, 'scroll').setScale(1);
+        const aboutPopupTitle = this.add.text(512, 200, 'About', {
+            fontFamily: 'MedievalSharp', fontSize: 40, color: '#411909', align: 'center'
+        }).setOrigin(0.5);
+        const aboutPopupText = this.add.text(512, 325,
+            'This is a side scroller puzzle game inspired by Fireboy and Watergirl, created as a personal project by NTU students' +
+            ' Nichlos Lee and Tan Aik Chong. It will no longer be updated. Use WASD to control the character!', {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
+        }).setOrigin(0.5);
+        const aboutPopupContainer = this.add.container(0, 0, [aboutPopupBackground,aboutPopupTitle, aboutPopupText]).setVisible(false);
+
         aboutButtonImage.on('pointerdown', () => {
-            console.log('About button clicked');
+            aboutPopupContainer.setDepth(200);
+            aboutPopupContainer.setVisible(true);
+        });
+
+        // Close popup on click
+        aboutPopupBackground.setInteractive().on('pointerdown', () => {
+            aboutPopupContainer.setVisible(false);
         });
 
         // Add buttons to the container
@@ -63,7 +79,7 @@ export class MainMenu extends Scene
             this.logoTween = null;
         }
 
-        this.scene.start('Game');
+        this.scene.start('GameL1');
     }
 
     moveLogo (reactCallback)

@@ -39,6 +39,8 @@ export class Preloader extends Scene
         this.load.image('cactus', 'cactus.PNG');
         this.load.image('rock', 'rocktile.png')
         this.load.image('pausebutton', 'pausebutton.png');
+        this.load.image('uiButton','button.png')
+        this.load.image('scroll','scroll.png')
     }
 
     create ()

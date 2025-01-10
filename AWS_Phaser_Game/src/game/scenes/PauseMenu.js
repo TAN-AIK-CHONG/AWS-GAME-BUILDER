@@ -66,7 +66,7 @@ export class PauseMenu extends Scene
         }).setOrigin(0.5).setDepth(200);
 
         // Yes button
-        const yesButton = this.add.text(462, 450, 'Yes', {
+        const yesButton = this.add.text(462, 440, 'Yes', {
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#ffffff', backgroundColor: '#411909', padding: { x: 10, y: 5 }
         }).setOrigin(0.5).setInteractive().setDepth(200);
 
@@ -77,7 +77,7 @@ export class PauseMenu extends Scene
         });
 
         // No button
-        const noButton = this.add.text(562, 450, 'No', {
+        const noButton = this.add.text(562, 440, 'No', {
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#ffffff', backgroundColor: '#411909', padding: { x: 10, y: 5 }
         }).setOrigin(0.5).setInteractive().setDepth(200);
 

@@ -84,19 +84,21 @@ export class GameScene extends Scene
 
         //speed constants
         const groundSpeed = 300;
-        const airSpeed = 200;
+        const airSpeed = 250;
         const jumpVelocity = -500;
-
-        const isOnGround = this.dino.body.touching.down;
+        
+        const isOnGround = this.dino.body.blocked.down;
         const speed = isOnGround ? groundSpeed : airSpeed;
 
         if (this.keys.left.isDown)
         {
+            this.dino.anims.play('walk', true);
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
         }
         else if (this.keys.right.isDown)
         {
+            this.dino.anims.play('walk', true);
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false);
         }

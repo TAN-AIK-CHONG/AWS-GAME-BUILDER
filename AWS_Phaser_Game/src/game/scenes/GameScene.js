@@ -10,10 +10,12 @@ export class GameScene extends Scene
     create ()
     {
         //dino sprite
-        this.dino = this.physics.add.sprite(512,500,"dino").setScale(2);
+        this.dino = this.physics.add.sprite(512,500,"dino").setScale(3).setDepth(100);
+
         
-        //offset so that dino touches platform
-        this.dino.body.setOffset(0,-3);
+        //adjust body size of dino
+        this.dino.body.setSize(this.dino.width-9, this.dino.height-6);
+        
 
         // dino animations
         this.anims.create({
@@ -24,6 +26,8 @@ export class GameScene extends Scene
         });
 
         this.dino.play('walk');
+
+        this.dino.setCollideWorldBounds(true);
 
         this.lives = 3;
 
@@ -40,25 +44,35 @@ export class GameScene extends Scene
         });
 
         // display lives
-        this.livesText = this.add.text(16, 16, `Lives: ${this.lives}`, { fontSize: '32px', fill: '#fff' });
+        this.livesText = this.add.text(16, 16, `Lives: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        // Add hearts to represent lives
+        this.hearts = this.add.group({
+            key: 'heart',
+            repeat: this.lives - 1,
+            setXY: { x: 150, y: 30, stepX: 32 }
+        });
+
+        this.hearts.children.iterate((child) => {
+            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+        });
 
         // display time
-        this.timeText = this.add.text(16, 48, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' });
+        this.timeText = this.add.text(16, 48, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
 
         // pause button
-        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.25).setDepth(100).setInteractive();
-        this.add.container(0, 0, [pauseButtonImage]);
+        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.5).setInteractive().setScrollFactor(0);
+        this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
             this.pauseGame();
         })
 
+        //camera follow dino
+        this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 300);
+
+        
+
         //start timer
         this.startTime = this.time.now;
-
-        // Call the create method of the derived class
-        if (super.create) {
-            super.create();
-        }
     }
 
     update ()
@@ -71,23 +85,17 @@ export class GameScene extends Scene
         //speed constants
         const groundSpeed = 300;
         const airSpeed = 200;
-        const jumpVelocity = -1000;
-
-        //boundaries
-        const minX = 0;
-        const maxX = this.cameras.main.width;
-        //const minY = 80;
-        //const maxY = this.cameras.main.height - 80;
+        const jumpVelocity = -500;
 
         const isOnGround = this.dino.body.touching.down;
         const speed = isOnGround ? groundSpeed : airSpeed;
 
-        if (this.keys.left.isDown && this.dino.x > minX)
+        if (this.keys.left.isDown)
         {
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
         }
-        else if (this.keys.right.isDown && this.dino.x < maxX)
+        else if (this.keys.right.isDown)
         {
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false);
@@ -95,10 +103,11 @@ export class GameScene extends Scene
         else
         {
             this.dino.setVelocityX(0);
+            this.dino.anims.stop();
         }
 
         // Jump!
-        if ((this.keys.up.isDown || this.keys.space.isDown) && this.dino.body.touching.down)
+        if ((this.keys.up.isDown || this.keys.space.isDown) && this.dino.body.blocked.down)
         {
             this.dino.setVelocityY(jumpVelocity);
         }
@@ -119,7 +128,17 @@ export class GameScene extends Scene
     {
         this.lives --;
         this.dino.setPosition(512,500);
-        this.livesText.setText(`Lives: ${this.lives}`);
+        // Update hearts display
+        this.hearts.clear(true, true);
+        this.hearts = this.add.group({
+            key: 'heart',
+            repeat: this.lives - 1,
+            setXY: { x: 150, y: 30, stepX: 32 }
+        });
+
+        this.hearts.children.iterate((child) => {
+            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+        });
         if (this.lives <= 0)
         {
             this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);

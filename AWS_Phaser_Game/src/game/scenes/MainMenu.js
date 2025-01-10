@@ -44,7 +44,7 @@ export class MainMenu extends Scene
         const aboutButton = this.add.container(0, 0, [aboutButtonImage, aboutButtonText]);
 
         // Create About popup with scroll image background
-        const aboutPopupBackground = this.add.image(512, 384, 'scroll').setScale(1);
+        const aboutPopupBackground = this.add.image(512, 384, 'scroll').setScale(1.1);
         const aboutPopupTitle = this.add.text(512, 200, 'About', {
             fontFamily: 'MedievalSharp', fontSize: 40, color: '#411909', align: 'center'
         }).setOrigin(0.5);

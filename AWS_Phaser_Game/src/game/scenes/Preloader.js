@@ -43,6 +43,8 @@ export class Preloader extends Scene
         this.load.image('scroll','scroll.png');
         this.load.tilemapTiledJSON('l1', 'jsonmaps/l1.json');
         this.load.image('tileset', 'tilemap.png');
+        this.load.image('heart', 'heart.png');
+
     }
 
     create ()

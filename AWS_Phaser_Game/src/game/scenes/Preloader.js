@@ -42,6 +42,7 @@ export class Preloader extends Scene
         this.load.image('uiButton','button.png');
         this.load.image('scroll','scroll.png');
         this.load.tilemapTiledJSON('l1', 'jsonmaps/l1.json');
+        this.load.tilemapTiledJSON('l2', 'jsonmaps/l2.json');
         this.load.image('tileset', 'tilemap.png');
         this.load.image('heart', 'heart.png');
 

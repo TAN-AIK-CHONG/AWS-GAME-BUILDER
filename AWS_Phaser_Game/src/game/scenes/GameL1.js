@@ -23,8 +23,10 @@ export class GameL1 extends GameScene
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
 
         foreground.setCollisionByProperty({ collides: true });
+        decorations.setCollisionByProperty({ collides: true });
         
         this.physics.add.collider(this.dino, foreground);
+        this.physics.add.collider(this.dino, decorations, this.loseLife, null, this);
 
 
         //set boundaries

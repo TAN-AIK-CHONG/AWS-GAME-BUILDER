@@ -12,13 +12,25 @@ export class GameL2 extends GameScene
     {
         super.create();
 
-        // add platform
-        this.platforms = this.physics.add.staticGroup();
-        const platform = this.platforms.create(512, 600, 'brownPlatform').setScale(50, 1).refreshBody();
-        this.physics.add.collider(this.dino, this.platforms);
+        //import tilemap
+        const map = this.make.tilemap({ key: 'l2' });
+
+        const tileset = map.addTilesetImage('tilemap', 'tileset');
+
+        const cactus = map.createLayer('Cactus', tileset, 0, 0).setScale(3);
+        const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
+
+        foreground.setCollisionByProperty({ collides: true });
+        cactus.setCollisionByProperty({ collides: true });
         
-        //start timer
-        this.startTime = this.time.now;
+        this.physics.add.collider(this.dino, foreground);
+        this.physics.add.collider(this.dino, cactus, this.loseLife, null, this);
+
+
+        //set boundaries
+        this.cameras.main.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);
+        this.physics.world.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);
+
 
         EventBus.emit('current-scene-ready', this);
     }

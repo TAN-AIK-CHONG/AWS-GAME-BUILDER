@@ -36,7 +36,8 @@ export class Preloader extends Scene
         this.load.image('star', 'star.png');
         this.load.spritesheet('dino', 'DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
         this.load.image('pausebutton', 'pausebutton.png');
-        this.load.image('uiButton','button.png');
+        this.load.image('uiButton','uiButton.png');
+        this.load.image('uiButton','uiButtonPressed.png');
         this.load.image('scroll','scroll.png');
         this.load.tilemapTiledJSON('l1', 'jsonmaps/l1.json');
         this.load.tilemapTiledJSON('l2', 'jsonmaps/l2.json');

@@ -10,7 +10,7 @@ export class GameScene extends Scene
     create ()
     {
         //dino sprite
-        this.dino = this.physics.add.sprite(512,500,"dino").setScale(3).setDepth(100);
+        this.dino = this.physics.add.sprite(512,500,"dino").setScale(4).setDepth(100);
 
         
         //adjust body size of dino
@@ -20,7 +20,7 @@ export class GameScene extends Scene
         // dino animations
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('dino', { start: 0, end: 3 }),
+            frames: this.anims.generateFrameNumbers('dino', { start: 3, end: 9 }),
             frameRate: 10,
             repeat: -1
         });
@@ -30,17 +30,22 @@ export class GameScene extends Scene
         this.dino.setCollideWorldBounds(true);
 
         this.lives = 3;
+        this.gems = 0;
 
         // Set common gravity
         this.physics.world.gravity.y = 1000;
 
         // Add common keybindings
         this.keys = this.input.keyboard.addKeys({
-            up: Input.Keyboard.KeyCodes.W,
-            down: Input.Keyboard.KeyCodes.S,
-            left: Input.Keyboard.KeyCodes.A,
-            right: Input.Keyboard.KeyCodes.D,
-            space: Input.Keyboard.KeyCodes.SPACE
+            up: Input.Keyboard.KeyCodes.UP,
+            down: Input.Keyboard.KeyCodes.DOWN,
+            left: Input.Keyboard.KeyCodes.LEFT,
+            right: Input.Keyboard.KeyCodes.RIGHT,
+            space: Input.Keyboard.KeyCodes.SPACE,
+            w: Input.Keyboard.KeyCodes.W,
+            a: Input.Keyboard.KeyCodes.A,
+            s: Input.Keyboard.KeyCodes.S,
+            d: Input.Keyboard.KeyCodes.D
         });
 
         // display lives
@@ -56,8 +61,16 @@ export class GameScene extends Scene
             child.setScrollFactor(0).setDepth(100).setScale(0.8);
         });
 
+        // display gems
+        this.gemsText = this.add.text(16, 48, `Gems: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.gems = 
+
+        this.hearts.children.iterate((child) => {
+            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+        });
+
         // display time
-        this.timeText = this.add.text(16, 48, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.timeText = this.add.text(16, 80, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
 
         // pause button
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.5).setInteractive().setScrollFactor(0);
@@ -90,13 +103,13 @@ export class GameScene extends Scene
         const isOnGround = this.dino.body.blocked.down;
         const speed = isOnGround ? groundSpeed : airSpeed;
 
-        if (this.keys.left.isDown)
+        if (this.keys.left.isDown || this.keys.a.isDown)
         {
             this.dino.anims.play('walk', true);
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
         }
-        else if (this.keys.right.isDown)
+        else if (this.keys.right.isDown || this.keys.d.isDown)
         {
             this.dino.anims.play('walk', true);
             this.dino.setVelocityX(speed);
@@ -109,7 +122,7 @@ export class GameScene extends Scene
         }
 
         // Jump!
-        if ((this.keys.up.isDown || this.keys.space.isDown) && this.dino.body.blocked.down)
+        if ((this.keys.up.isDown || this.keys.space.isDown || this.keys.w.isDown) && this.dino.body.blocked.down)
         {
             this.dino.setVelocityY(jumpVelocity);
         }

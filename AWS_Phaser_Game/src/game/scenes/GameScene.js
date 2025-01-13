@@ -62,12 +62,8 @@ export class GameScene extends Scene
         });
 
         // display gems
-        this.gemsText = this.add.text(16, 48, `Gems: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
-        this.gems = 
-
-        this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.8);
-        });
+        this.add.image(30, 60, 'gem').setScale(2).setScrollFactor(0).setDepth(100);
+        this.gemsText = this.add.text(50, 48, `:${this.gems}`, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
 
         // display time
         this.timeText = this.add.text(16, 80, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
@@ -105,13 +101,11 @@ export class GameScene extends Scene
 
         if (this.keys.left.isDown || this.keys.a.isDown)
         {
-            this.dino.anims.play('walk', true);
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
         }
         else if (this.keys.right.isDown || this.keys.d.isDown)
         {
-            this.dino.anims.play('walk', true);
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false);
         }
@@ -119,6 +113,7 @@ export class GameScene extends Scene
         {
             this.dino.setVelocityX(0);
             this.dino.anims.stop();
+            this.dino.setFrame(3);
         }
 
         // Jump!
@@ -166,5 +161,11 @@ export class GameScene extends Scene
 
             this.scene.start('GameOver', { time: formattedTime });
         }
+    }
+
+    collectGem ()
+    {
+        this.gems += 1;
+        this.gemsText.setText(`: ${this.gems}`);
     }
 }

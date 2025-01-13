@@ -12,7 +12,6 @@ export class GameL1 extends GameScene
     {
         super.create();
 
-
         //import tilemap
         const map = this.make.tilemap({ key: 'l1' });
 

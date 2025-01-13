@@ -10,6 +10,47 @@ export class MainMenu extends Scene
         super('MainMenu');
     }
 
+    createButton(x, y, text, callback) {
+        const buttonImage = this.add.image(x, y, 'uiButton').setInteractive().setScale(0.35);
+        const buttonText = this.add.text(x, y - 10, text, {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
+        }).setOrigin(0.5);
+    
+        const button = this.add.container(x, y, [buttonImage, buttonText]);
+    
+        // Add hover effect
+        buttonImage.on('pointerover', () => {
+            buttonImage.setTint(0xdddddd); // Lighten button on hover
+        });
+    
+        buttonImage.on('pointerout', () => {
+            buttonImage.clearTint(); // Clear tint when pointer moves out
+        });
+    
+        // Handle button click
+        buttonImage.on('pointerdown', callback);
+    
+        return button;
+    }
+
+    createPopup(title, text) {
+        const popupBackground = this.add.image(512, 384, 'scroll').setScale(1.1);
+        const popupTitle = this.add.text(512, 200, title, {
+            fontFamily: 'MedievalSharp', fontSize: 40, color: '#411909', align: 'center'
+        }).setOrigin(0.5);
+        const popupText = this.add.text(512, 325, text, {
+            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
+        }).setOrigin(0.5);
+        const popupContainer = this.add.container(0, 0, [popupBackground, popupTitle, popupText]).setVisible(false);
+
+        // Close popup on click
+        popupBackground.setInteractive().on('pointerdown', () => {
+            popupContainer.setVisible(false);
+        });
+
+        return popupContainer;
+    }
+
     create ()
     {
         this.add.image(512, 384, 'background');
@@ -19,100 +60,41 @@ export class MainMenu extends Scene
         // Create a container for the buttons
         const buttonContainer = this.add.container(512, 300);
 
-        // Create Play button with text
-        const playButtonImage = this.add.image(0, 0, 'uiButton').setDepth(100).setInteractive();
-        const playButtonText = this.add.text(0, 0, 'Play', {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
-        }).setOrigin(0.5);
-        const playButton = this.add.container(0, 0, [playButtonImage, playButtonText]);
-        playButtonImage.on('pointerdown', () => {
+        // Create Play button
+        const playButton = this.createButton(0, 0, 'Play', () => {
             this.scene.start('GameL1');
         });
 
-        // Create Options button with text
-        const optionsButtonImage = this.add.image(0, 120, 'uiButton').setDepth(100).setInteractive();
-        const optionsButtonText = this.add.text(0, 120, 'Options', {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
-        }).setOrigin(0.5);
-        const optionsButton = this.add.container(0, 0, [optionsButtonImage, optionsButtonText]);
+        // Create Instructions button
+        const instructionsButton = this.createButton(0, 60, 'How To Play', () => {
+            instructionsPopupContainer.setDepth(200);
+            instructionsPopupContainer.setVisible(true);
+        });
 
-        // Create About button with text
-        const aboutButtonImage = this.add.image(0, 240, 'uiButton').setDepth(100).setInteractive();
-        const aboutButtonText = this.add.text(0, 240, 'About', {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
-        }).setOrigin(0.5);
-        const aboutButton = this.add.container(0, 0, [aboutButtonImage, aboutButtonText]);
-
-        // Create About popup with scroll image background
-        const aboutPopupBackground = this.add.image(512, 384, 'scroll').setScale(1.1);
-        const aboutPopupTitle = this.add.text(512, 200, 'About', {
-            fontFamily: 'MedievalSharp', fontSize: 40, color: '#411909', align: 'center'
-        }).setOrigin(0.5);
-        const aboutPopupText = this.add.text(512, 325,
-            'This is a side scroller puzzle game inspired by Fireboy and Watergirl, created as a personal project by NTU students' +
-            ' Nichlos Lee and Tan Aik Chong. It will no longer be updated. Use WASD to control the character!', {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
-        }).setOrigin(0.5);
-        const aboutPopupContainer = this.add.container(0, 0, [aboutPopupBackground,aboutPopupTitle, aboutPopupText]).setVisible(false);
-
-        aboutButtonImage.on('pointerdown', () => {
+        // Create About button
+        const aboutButton = this.createButton(0, 120, 'About', () => {
             aboutPopupContainer.setDepth(200);
             aboutPopupContainer.setVisible(true);
         });
 
-        // Close popup on click
-        aboutPopupBackground.setInteractive().on('pointerdown', () => {
-            aboutPopupContainer.setVisible(false);
-        });
+        // Create About popup
+        const aboutPopupContainer = this.createPopup('About', 
+            'This is a side scroller puzzle game created as a personal project by NTU students' +
+            ' Nichlos Lee and Tan Aik Chong. It will no longer be updated. Enjoy!');
+
+        // Create Instructions popup
+        const instructionsPopupContainer = this.createPopup('How To Play', 
+            'Use the WASD or Arrow keys to move your character. Avoid obstacles and enemies, '+
+            'and collect all gems before reaching the flag to proceed to the next level!');
 
         // Add buttons to the container
-        buttonContainer.add([playButton, optionsButton, aboutButton]);
-                
+        buttonContainer.add([playButton, instructionsButton, aboutButton]);
+
         EventBus.emit('current-scene-ready', this);
     }
 
     changeScene ()
     {
-        if (this.logoTween)
-        {
-            this.logoTween.stop();
-            this.logoTween = null;
-        }
-
         this.scene.start('GameL1');
-    }
-
-    moveLogo (reactCallback)
-    {
-        if (this.logoTween)
-        {
-            if (this.logoTween.isPlaying())
-            {
-                this.logoTween.pause();
-            }
-            else
-            {
-                this.logoTween.play();
-            }
-        }
-        else
-        {
-            this.logoTween = this.tweens.add({
-                targets: this.logo,
-                x: { value: 750, duration: 3000, ease: 'Back.easeInOut' },
-                y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
-                yoyo: true,
-                repeat: -1,
-                onUpdate: () => {
-                    if (reactCallback)
-                    {
-                        reactCallback({
-                            x: Math.floor(this.logo.x),
-                            y: Math.floor(this.logo.y)
-                        });
-                    }
-                }
-            });
-        }
     }
 }

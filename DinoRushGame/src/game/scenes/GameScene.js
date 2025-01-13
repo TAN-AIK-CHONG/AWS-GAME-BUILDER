@@ -76,11 +76,19 @@ export class GameScene extends Scene
         this.timeText = this.add.text(16, 80, ' Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
 
         // pause button
-        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.5).setInteractive().setScrollFactor(0);
+        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
             this.pauseGame();
         })
+        // Add hover effect
+        pauseButtonImage.on('pointerover', () => {
+            pauseButtonImage.setTint(0xdddddd);
+        });
+    
+        pauseButtonImage.on('pointerout', () => {
+            pauseButtonImage.clearTint();
+        });
 
         //camera follow dino
         this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 300);
@@ -167,8 +175,10 @@ export class GameScene extends Scene
             const seconds = elapsedTime % 60;
 
             const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
+            
             this.scene.start('GameOver', { time: formattedTime });
+
+            this.scene.stop();
         }
     }
 

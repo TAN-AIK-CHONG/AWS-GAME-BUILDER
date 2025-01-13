@@ -35,7 +35,7 @@ export class Preloader extends Scene
         this.load.image('logo', 'logo.png');
         this.load.image('star', 'star.png');
         this.load.spritesheet('dino', 'DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
-        this.load.image('pausebutton', 'pausebutton.png');
+        this.load.image('pausebutton', 'pausebutton (2).png');
         this.load.image('uiButton','uiButton.png');
         this.load.image('uiButton','uiButtonPressed.png');
         this.load.image('scroll','scroll.png');

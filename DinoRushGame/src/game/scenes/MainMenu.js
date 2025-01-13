@@ -34,12 +34,12 @@ export class MainMenu extends Scene
     }
 
     createPopup(title, text) {
-        const popupBackground = this.add.image(512, 384, 'scroll').setScale(1.1);
-        const popupTitle = this.add.text(512, 200, title, {
-            fontFamily: 'Oxanium', fontSize: 40, color: '#411909', align: 'center'
+        const popupBackground = this.add.rectangle(512, 384, 450, 400, 0x000000, 0.95).setOrigin(0.5).setDepth(100);
+        const popupTitle = this.add.text(512, 250, title, {
+            fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'center'
         }).setOrigin(0.5);
-        const popupText = this.add.text(512, 325, text, {
-            fontFamily: 'Oxanium', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
+        const popupText = this.add.text(512, 380, text, {
+            fontFamily: 'Oxanium', fontSize: 24, color: '#ffffff', align: 'center', wordWrap: { width: 380 }
         }).setOrigin(0.5);
         const popupContainer = this.add.container(0, 0, [popupBackground, popupTitle, popupText]).setVisible(false);
 

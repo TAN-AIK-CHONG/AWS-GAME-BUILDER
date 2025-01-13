@@ -62,11 +62,18 @@ export class GameScene extends Scene
         });
 
         // display gems
-        this.add.image(30, 60, 'gem').setScale(2).setScrollFactor(0).setDepth(100);
-        this.gemsText = this.add.text(50, 48, `:${this.gems}`, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.gemsText = this.add.text(16, 48, ` Gems: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.gemIcons = this.add.group();
+
+        for (let i = 0; i < 3; i++) {
+            const gemIcon = this.add.image(150 + i * 32, 60, 'gem').setScale(1.5).setScrollFactor(0).setDepth(100);
+            gemIcon.setTint(0x101010);
+            this.gemIcons.add(gemIcon);
+        }
+        
 
         // display time
-        this.timeText = this.add.text(16, 80, 'Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.timeText = this.add.text(16, 80, ' Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
 
         // pause button
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.5).setInteractive().setScrollFactor(0);
@@ -132,7 +139,7 @@ export class GameScene extends Scene
         const seconds = elapsedTime % 60;
 
         const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        this.timeText.setText(`Time: ${formattedTime}`);
+        this.timeText.setText(` Time:${formattedTime}`);
     }
 
     // Call this function when dino dies
@@ -168,7 +175,8 @@ export class GameScene extends Scene
     collectGem (dino,gem)
     {
         this.gems++;
-        this.gemsText.setText(`:${this.gems}`);
+        const gemImage = this.gemIcons.getChildren()[this.gems - 1];
+        gemImage.clearTint();
         gem.destroy();
     }
 }

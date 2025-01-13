@@ -13,7 +13,7 @@ export class MainMenu extends Scene
     createButton(x, y, text, callback) {
         const buttonImage = this.add.image(x, y, 'uiButton').setInteractive().setScale(0.35);
         const buttonText = this.add.text(x, y - 10, text, {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
+            fontFamily: 'Oxanium', fontSize: 18, color: '#411909'
         }).setOrigin(0.5);
     
         const button = this.add.container(x, y, [buttonImage, buttonText]);
@@ -36,10 +36,10 @@ export class MainMenu extends Scene
     createPopup(title, text) {
         const popupBackground = this.add.image(512, 384, 'scroll').setScale(1.1);
         const popupTitle = this.add.text(512, 200, title, {
-            fontFamily: 'MedievalSharp', fontSize: 40, color: '#411909', align: 'center'
+            fontFamily: 'Oxanium', fontSize: 40, color: '#411909', align: 'center'
         }).setOrigin(0.5);
         const popupText = this.add.text(512, 325, text, {
-            fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
+            fontFamily: 'Oxanium', fontSize: 24, color: '#411909', align: 'center', wordWrap: { width: 380 }
         }).setOrigin(0.5);
         const popupContainer = this.add.container(0, 0, [popupBackground, popupTitle, popupText]).setVisible(false);
 

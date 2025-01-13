@@ -13,7 +13,7 @@ export class GameL1 extends GameScene
         
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 1', {
-            fontFamily: 'MedievalSharp', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8
+            fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8
         }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
 
 
@@ -87,7 +87,7 @@ export class GameL1 extends GameScene
         }
         else {
             const message = this.add.text(512, 50, 'Not enough gems!', {
-                fontFamily: 'MedievalSharp', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
+                fontFamily: 'Oxanium', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
             }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
 
             this.time.delayedCall(1000, () => {

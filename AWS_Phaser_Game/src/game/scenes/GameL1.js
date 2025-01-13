@@ -11,9 +11,10 @@ export class GameL1 extends GameScene
     create ()
     {
         super.create();
+        
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 1', {
-            fontFamily: 'MedievalSharp', fontSize: '48px', fill: '#000000'
+            fontFamily: 'MedievalSharp', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8
         }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
 
 

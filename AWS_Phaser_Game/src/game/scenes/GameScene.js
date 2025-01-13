@@ -163,9 +163,10 @@ export class GameScene extends Scene
         }
     }
 
-    collectGem ()
+    collectGem (dino, gem)
     {
         this.gems += 1;
         this.gemsText.setText(`: ${this.gems}`);
+        gem.destroy();
     }
 }

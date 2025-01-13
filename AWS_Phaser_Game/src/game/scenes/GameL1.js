@@ -62,12 +62,6 @@ export class GameL1 extends GameScene
     
         EventBus.emit('current-scene-ready', this);
     }
-
-    collectGem(dino, gem) {
-        gem.destroy(); 
-        console.log('Gem collected!');
-        // Optionally: Add score or other logic here
-    }
     
 
     update ()

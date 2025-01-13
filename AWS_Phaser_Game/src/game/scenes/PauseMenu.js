@@ -24,7 +24,7 @@ export class PauseMenu extends Scene
         }).setOrigin(0.5).setDepth(100); 
 
         // Resume button
-        const resumeButtonImage = this.add.image(512, 400, 'uiButton').setDepth(100).setInteractive();
+        const resumeButtonImage = this.add.image(512, 400, 'uiButton').setDepth(100).setInteractive().setScale(0.35);
         const resumeButtonText = this.add.text(512, 400, 'Resume', {
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
         }).setOrigin(0.5);
@@ -37,7 +37,7 @@ export class PauseMenu extends Scene
         });
 
         // Main Menu button
-        const mainMenuButtonImage = this.add.image(512, 500, 'uiButton').setDepth(100).setInteractive();
+        const mainMenuButtonImage = this.add.image(512, 500, 'uiButton').setDepth(100).setInteractive().setScale(0.35);
         const mainMenuButtonText = this.add.text(512, 500, 'Main Menu', {
             fontFamily: 'MedievalSharp', fontSize: 24, color: '#411909'
         }).setOrigin(0.5);

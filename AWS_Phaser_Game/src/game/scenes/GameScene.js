@@ -103,11 +103,13 @@ export class GameScene extends Scene
         {
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
+            this.dino.play('walk', true);
         }
         else if (this.keys.right.isDown || this.keys.d.isDown)
         {
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false);
+            this.dino.play('walk', true);
         }
         else
         {
@@ -163,10 +165,10 @@ export class GameScene extends Scene
         }
     }
 
-    collectGem (dino, gem)
+    collectGem (dino,gem)
     {
-        this.gems += 1;
-        this.gemsText.setText(`: ${this.gems}`);
+        this.gems++;
+        this.gemsText.setText(`:${this.gems}`);
         gem.destroy();
     }
 }

@@ -80,8 +80,8 @@
                  "type":"",
                  "visible":true,
                  "width":18,
-                 "x":144,
-                 "y":162
+                 "x":216.272727272727,
+                 "y":180.068181818182
                 }, 
                 {
                  "gid":119,
@@ -683,7 +683,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {

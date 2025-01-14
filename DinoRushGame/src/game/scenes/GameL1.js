@@ -63,31 +63,4 @@ export class GameL1 extends GameScene
         EventBus.emit('current-scene-ready', this);
     }
 
-    handleFlag () 
-    {
-        if (this.gems === 3) {
-            this.scene.start('GameL2');
-        }
-        else {
-            const message = this.add.text(512, 50, 'Not enough gems!', {
-                fontFamily: 'Oxanium', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
-            }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
-
-            this.time.delayedCall(1000, () => {
-                this.tweens.add({
-                    targets: message,
-                    alpha: 0,
-                    duration: 1000,
-                    ease: 'Power2',
-                    onComplete: () => {
-                        message.destroy();
-                    }
-                });
-            });
-        }
-    }
-
-    changeScene() {
-        this.scene.start('GameL2');
-    }
 }

@@ -79,7 +79,7 @@ export class GameScene extends Scene
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
-            this.pauseGame();
+            this.pauseGame(this.scene.key);
         })
         // Add hover effect
         pauseButtonImage.on('pointerover', () => {
@@ -97,6 +97,17 @@ export class GameScene extends Scene
 
         //start timer
         this.startTime = this.time.now;
+    }
+
+    pauseGame (currentScene)
+    {
+        this.scene.pause();
+        this.scene.launch('PauseMenu', { returnScene: currentScene });
+    }
+
+    resumeGame (currentScene)
+    {
+        this.scene.resume(currentScene);
     }
 
     update ()

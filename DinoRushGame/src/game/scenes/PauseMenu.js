@@ -41,7 +41,7 @@ export class PauseMenu extends Scene
         });
 
         resumeButtonImage.on('pointerdown', () => {
-            this.scene.get(this.returnScene).resumeGame();
+            this.scene.get(this.returnScene).resumeGame(this.returnScene);
             this.scene.stop();
         });
 

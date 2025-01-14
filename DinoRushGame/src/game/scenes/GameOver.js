@@ -28,7 +28,7 @@ export class GameOver extends Scene
 
         // Main Menu Button
         const mainMenuButtonImage = this.add.image(512, 440, 'uiButton').setDepth(100).setInteractive().setScale(0.35);
-        const mainMenuButtonText = this.add.text(512, 430, 'Back to Main Menu', {
+        const mainMenuButtonText = this.add.text(512, 430, 'Main Menu', {
             fontFamily: 'Oxanium', fontSize: 18, color: '#411909'
         }).setOrigin(0.5);
         

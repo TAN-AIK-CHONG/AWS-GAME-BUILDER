@@ -36,10 +36,10 @@ export class MainMenu extends Scene
     createPopup(title, text) {
         const popupBackground = this.add.rectangle(512, 384, 450, 400, 0x000000, 0.95).setOrigin(0.5).setDepth(100);
         const popupTitle = this.add.text(512, 250, title, {
-            fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'center'
+            fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'left'
         }).setOrigin(0.5);
         const popupText = this.add.text(512, 380, text, {
-            fontFamily: 'Oxanium', fontSize: 24, color: '#ffffff', align: 'center', wordWrap: { width: 380 }
+            fontFamily: 'Oxanium', fontSize: 24, color: '#ffffff', align: 'left', wordWrap: { width: 380 }
         }).setOrigin(0.5);
         const popupContainer = this.add.container(0, 0, [popupBackground, popupTitle, popupText]).setVisible(false);
 

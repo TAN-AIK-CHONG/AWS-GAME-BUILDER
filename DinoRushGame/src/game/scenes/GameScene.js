@@ -10,6 +10,15 @@ export class GameScene extends Scene
 
     create ()
     {
+        //add repeating background
+        const bgWidth = this.textures.get('gameBackground1').getSourceImage().width * 3.7;  // Width of the image after scaling
+
+        this.backgrounds = [];  // Store all background parts
+        for (let i = 0; i < 3; i++) {  // Add enough to cover the screen
+            const bg = this.add.image(i * bgWidth, 484, 'gameBackground1').setScale(3.7).setOrigin(0, 0.5);
+            this.backgrounds.push(bg);
+        }
+
         //dino sprite
         this.dino = this.physics.add.sprite(512,500,"dino").setScale(4).setDepth(100);
 

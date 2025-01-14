@@ -5,7 +5,7 @@ export class GameL1 extends GameScene
 {
     constructor ()
     {
-        super('GameL1');
+        super('GameL1', 'GameL2');
     }
 
     create() {
@@ -61,23 +61,6 @@ export class GameL1 extends GameScene
         this.physics.world.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);
     
         EventBus.emit('current-scene-ready', this);
-    }
-    
-
-    update ()
-    {
-        super.update();
-    }
-
-    pauseGame ()
-    {
-        this.scene.pause();
-        this.scene.launch('PauseMenu', { returnScene: 'GameL1' });
-    }
-
-    resumeGame ()
-    {
-        this.scene.resume('GameL1');
     }
 
     handleFlag () 

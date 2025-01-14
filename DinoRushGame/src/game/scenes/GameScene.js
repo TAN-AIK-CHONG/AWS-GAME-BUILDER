@@ -118,13 +118,24 @@ export class GameScene extends Scene
         {
             this.dino.setVelocityX(-speed);
             this.dino.setFlipX(true);
-            this.dino.play('walk', true);
+            if (isOnGround){
+                this.dino.play('walk', true);
+            }
+            else{
+                this.dino.setFrame(6);
+            }
+            
         }
         else if (this.keys.right.isDown || this.keys.d.isDown)
         {
             this.dino.setVelocityX(speed);
             this.dino.setFlipX(false);
-            this.dino.play('walk', true);
+            if (isOnGround){
+                this.dino.play('walk', true);
+            }
+            else{
+                this.dino.setFrame(6);
+            }
         }
         else
         {

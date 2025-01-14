@@ -5,7 +5,7 @@ export class GameL2 extends GameScene
 {
     constructor ()
     {
-        super('GameL2');
+        super('GameL2','GameOver');
     }
 
     create ()
@@ -53,26 +53,5 @@ export class GameL2 extends GameScene
 
 
         EventBus.emit('current-scene-ready', this);
-    }
-
-    update ()
-    {
-        super.update();
-    }
-
-    pauseGame ()
-    {
-        this.scene.pause();
-        this.scene.launch('PauseMenu', { returnScene: 'GameL2' });
-    }
-
-    resumeGame ()
-    {
-        this.scene.resume('GameL2');
-    }
-
-    changeScene () 
-    {
-        this.scene.start('GameL1');
     }
 }

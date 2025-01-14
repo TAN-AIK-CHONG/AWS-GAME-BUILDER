@@ -1,0 +1,28 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "exportAsImage.visibleLayersOnly": false,
+    "fileStates": {
+    },
+    "last.imagePath": "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets",
+    "map.height": 15,
+    "map.tileHeight": 24,
+    "map.tileWidth": 24,
+    "map.width": 50,
+    "openFiles": [
+    ],
+    "project": "background.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.embedInMap": true,
+    "tileset.spacing": 1,
+    "tileset.tileSize": {
+        "height": 24,
+        "width": 24
+    }
+}

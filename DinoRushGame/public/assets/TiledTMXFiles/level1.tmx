@@ -4,13 +4,13 @@
   <export target="jsonmaps/l1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="tilemap-backgrounds" tilewidth="24" tileheight="24" spacing="1" tilecount="24" columns="8">
-  <image source="tilemap-backgrounds.png" width="199" height="74"/>
+  <image source="../tilemap-backgrounds.png" width="199" height="74"/>
  </tileset>
  <tileset firstgid="25" name="tilemap-characters" tilewidth="24" tileheight="24" spacing="1" tilecount="27" columns="9">
-  <image source="tilemap-characters.png" width="224" height="74"/>
+  <image source="../tilemap-characters.png" width="224" height="74"/>
  </tileset>
  <tileset firstgid="52" name="tilemap" tilewidth="18" tileheight="18" spacing="1" tilecount="180" columns="20">
-  <image source="tilemap.png" width="379" height="170"/>
+  <image source="../tilemap.png" width="379" height="170"/>
   <tile id="0">
    <properties>
     <property name="collides" type="bool" value="true"/>

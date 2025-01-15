@@ -17,7 +17,7 @@ export class PauseMenu extends Scene
     {
         this.add.image(512, 384, 'background');
 
-        this.add.text(512, 280, 'Game Paused', {
+        this.add.text(512, 280, 'Paused', {
             fontFamily: 'Oxanium', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

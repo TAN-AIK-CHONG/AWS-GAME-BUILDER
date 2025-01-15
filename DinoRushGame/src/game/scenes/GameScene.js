@@ -67,7 +67,7 @@ export class GameScene extends Scene
         });
 
         // display lives
-        this.livesText = this.add.text(16, 16, `Lives: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.livesText = this.add.text(16, 16, `Lives: `, { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
         // Add hearts to represent lives
         this.hearts = this.add.group({
             key: 'heart',
@@ -80,7 +80,7 @@ export class GameScene extends Scene
         });
 
         // display gems
-        this.gemsText = this.add.text(16, 48, ` Gems: `, { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.gemsText = this.add.text(16, 48, ` Gems: `, { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
         this.gemIcons = this.add.group();
 
         for (let i = 0; i < 3; i++) {
@@ -91,7 +91,7 @@ export class GameScene extends Scene
         
 
         // display time
-        this.timeText = this.add.text(16, 80, ' Time: 00:00:00', { fontSize: '32px', fill: '#fff' }).setScrollFactor(0).setDepth(100);
+        this.timeText = this.add.text(16, 80, ' Time: 00:00:00', { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
 
         // pause button
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);

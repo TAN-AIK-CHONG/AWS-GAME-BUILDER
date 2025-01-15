@@ -1,5 +1,10 @@
 import { Scene, Input } from 'phaser';
 
+const sceneConfig = {
+    GameL1: { spawnX: 512, spawnY: 500 },
+    GameL2: { spawnX: 340, spawnY: 1038 }
+};
+
 export class GameScene extends Scene
 {
     constructor (key, nextScene)
@@ -8,7 +13,7 @@ export class GameScene extends Scene
         this.nextScene = nextScene;
     }
 
-    create ()
+    create (data)
     {
         //add repeating background
         const bgWidth = this.textures.get('gameBackground1').getSourceImage().width * 3.7;  // Width of the image after scaling
@@ -19,14 +24,17 @@ export class GameScene extends Scene
             this.backgrounds.push(bg);
         }
 
+        //spawn point for dino
+        this.spawnX = data.spawnX
+        this.spawnY = data.spawnY
+
         //dino sprite
-        this.dino = this.physics.add.sprite(512,500,"dino").setScale(4).setDepth(100);
+        this.dino = this.physics.add.sprite(this.spawnX,this.spawnY,"dino").setScale(4).setDepth(100);
 
         
         //adjust body size of dino
         this.dino.body.setSize(this.dino.width-9, this.dino.height-6);
         
-
         // dino animations
         this.anims.create({
             key: 'walk',
@@ -101,12 +109,17 @@ export class GameScene extends Scene
         });
 
         //camera follow dino
-        this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 300);
+        this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 100);
 
         
 
         //start timer
         this.startTime = this.time.now;
+
+        //for debugging
+        this.input.on('pointerdown', (pointer) => {
+            console.log(`Clicked at: x=${pointer.worldX}, y=${pointer.worldY}`);
+        });
     }
 
     pauseGame (currentScene)
@@ -119,7 +132,7 @@ export class GameScene extends Scene
     {
         this.scene.resume(currentScene);
     }
-
+    
     update ()
     {
         // Call the update method of the derived class
@@ -186,7 +199,7 @@ export class GameScene extends Scene
     loseLife ()
     {
         this.lives --;
-        this.dino.setPosition(512,500);
+        this.dino.setPosition(this.spawnX,this.spawnY);
         // Update hearts display
         this.hearts.clear(true, true);
         this.hearts = this.add.group({
@@ -229,7 +242,8 @@ export class GameScene extends Scene
     handleFlag () 
     {
         if (this.gems === 3) {
-            this.scene.start(this.nextScene);
+            const spawnData = sceneConfig[this.nextScene];
+            this.scene.start(this.nextScene, spawnData);
         }
         else {
             const message = this.add.text(512, 50, 'Not enough gems!', {

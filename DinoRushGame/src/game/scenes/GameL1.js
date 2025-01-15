@@ -8,10 +8,12 @@ export class GameL1 extends GameScene
         super('GameL1', 'GameL2');
     }
 
-    create() {
-        super.create();
+    create(data) {
+        super.create(data);
 
-        
+        //spawn dino sprite
+        //this.dino = this.physics.add.sprite(512,500,"dino").setScale(4).setDepth(100);
+
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 1', {
             fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8
@@ -62,4 +64,5 @@ export class GameL1 extends GameScene
     
         EventBus.emit('current-scene-ready', this);
     }
+
 }

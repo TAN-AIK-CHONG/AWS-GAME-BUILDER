@@ -8,9 +8,9 @@ export class GameL2 extends GameScene
         super('GameL2','GameOver');
     }
 
-    create ()
+    create (data)
     {
-        super.create();
+        super.create(data);
 
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 2', {
@@ -35,17 +35,15 @@ export class GameL2 extends GameScene
 
         const tileset = map.addTilesetImage('tilemap', 'tileset');
 
-        const cactus = map.createLayer('Cactus', tileset, 0, 0).setScale(3);
+        const decorations = map.createLayer('Decorations', tileset, 0, 0).setScale(3);
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
-        const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
+        const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
 
         foreground.setCollisionByProperty({ collides: true });
-        cactus.setCollisionByProperty({ collides: true });
-        flag.setCollisionByProperty({ flag: true });
+        spikes.setCollisionByProperty({ collides: true });
         
         this.physics.add.collider(this.dino, foreground);
-        this.physics.add.collider(this.dino, cactus, this.loseLife, null, this);
-        this.physics.add.collider(this.dino, flag, this.changeScene, null, this);   
+        this.physics.add.collider(this.dino, spikes, this.loseLife, null, this);  
         
         //set boundaries
         this.cameras.main.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);

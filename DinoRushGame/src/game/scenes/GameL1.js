@@ -11,6 +11,9 @@ export class GameL1 extends GameScene
     create(data) {
         super.create(data);
 
+        // add background
+        const bg = this.add.image(512, 50, 'gameBackground1').setScale(3.7);
+
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 1', {
             fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8

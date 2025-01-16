@@ -11,9 +11,6 @@ export class GameL1 extends GameScene
     create(data) {
         super.create(data);
 
-        //spawn dino sprite
-        //this.dino = this.physics.add.sprite(512,500,"dino").setScale(4).setDepth(100);
-
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 1', {
             fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8

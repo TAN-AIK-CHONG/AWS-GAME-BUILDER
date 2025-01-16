@@ -73,7 +73,7 @@ export class GameL2 extends GameScene
 
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
-        this.physics.add.collider(this.dino, this.spikeGroup/*, this.loseLife, null, this*/);
+        this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
         
         // Access Gems Object Layer
         const gemsObjectLayer = map.getObjectLayer('Gems').objects;  // Get array of gem objects

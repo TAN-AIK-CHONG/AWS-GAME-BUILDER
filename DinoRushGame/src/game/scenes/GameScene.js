@@ -36,6 +36,14 @@ export class GameScene extends Scene
             repeat: -1
         });
 
+        //hhurt
+        this.anims.create({
+            key: 'hurt',
+            frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 16 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.dino.play('walk');
 
         this.dino.setCollideWorldBounds(true);
@@ -196,32 +204,15 @@ export class GameScene extends Scene
     loseLife ()
     {
         this.isHurt = true;
-        this.lives --;
+        //this.lives--;
         const pushDirection = this.dino.flipX ? 200 : -200;
-        this.isHurt = true;
         this.dino.setVelocity(pushDirection,-300);
 
-
         //add sound later
+
+
         // hurt anim
-        this.tweens.add({
-            targets: this.dino,
-            alpha: 0,
-            ease: 'Linear',
-            duration: 100,
-            repeat: 5,
-            yoyo: true,
-            onStart: () => {
-                this.dino.setFrame(15);
-            },
-            onYoyo: () => {
-                this.dino.setFrame(this.dino.frame.name === 15 ? 14 : 15);
-            },
-            onComplete: () => {
-                this.dino.alpha = 1; 
-                this.dino.setFrame(0); // Reset to the default frame
-            }
-        });
+        this.dino.play('hurt', true);
         
         // Update hearts display
         this.hearts.children.iterate((child, index) => {

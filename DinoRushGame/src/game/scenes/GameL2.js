@@ -41,12 +41,39 @@ export class GameL2 extends GameScene
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
 
         foreground.setCollisionByProperty({ collides: true });
-        spikes.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
         
+        this.spikeGroup = this.physics.add.staticGroup();
+
+        // Create custom physics bodies for each spike tile to adjust the collision area
+        spikes.forEachTile(tile => {
+            if (tile.properties.collides) {
+                // Calculate world position for the spike
+                const worldX = tile.pixelX * 3;
+                const worldY = tile.pixelY * 3;
+                
+                // Create an invisible rectangle at the spike's position
+                const spikeHitbox = this.add.rectangle(
+                    worldX + (tile.width * 3) / 2,  // center X
+                    worldY + (tile.height * 3) / 2,  // center Y
+                    tile.width * 3,  // width (scaled)
+                    tile.height * 3   // height (scaled)
+                );
+                
+                this.physics.add.existing(spikeHitbox, true);  // true makes it static
+                
+                this.spikeGroup.add(spikeHitbox);
+
+                spikeHitbox.body.setSize(20, 5);  // Adjust 
+                
+                // Make hitbox invisible
+                spikeHitbox.setAlpha(0);
+            }
+        });
+
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
-        this.physics.add.collider(this.dino, spikes, this.loseLife, null, this); 
+        this.physics.add.collider(this.dino, this.spikeGroup/*, this.loseLife, null, this*/);
         
         // Access Gems Object Layer
         const gemsObjectLayer = map.getObjectLayer('Gems').objects;  // Get array of gem objects

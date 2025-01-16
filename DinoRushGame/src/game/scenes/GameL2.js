@@ -12,6 +12,14 @@ export class GameL2 extends GameScene
     {
         super.create(data);
 
+        const bgWidth = this.textures.get('gameBackground1').getSourceImage().width * 3.7;  // Width of the image after scaling
+
+        this.backgrounds = [];  // Store all background parts
+        for (let i = 0; i < 3; i++) {  // Add enough to cover the screen
+            const bg = this.add.image(i * bgWidth, 550, 'gameBackground1').setScale(3.7).setOrigin(0, 0.5);
+            this.backgrounds.push(bg);
+        }
+
         // display level number for 3 seconds
         const levelText = this.add.text(512, 50, 'Level 2', {
             fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8

@@ -21,6 +21,7 @@ export class MainMenu extends Scene
         // Add hover effect
         buttonImage.on('pointerover', () => {
             buttonImage.setTint(0xdddddd); // Lighten button on hover
+            this.sound.play('buttonHoverAudio');
         });
     
         buttonImage.on('pointerout', () => {
@@ -28,7 +29,10 @@ export class MainMenu extends Scene
         });
     
         // Handle button click
-        buttonImage.on('pointerdown', callback);
+        buttonImage.on('pointerdown', () => {
+            this.sound.play('buttonClickAudio'); // Play click sound
+            this.time.delayedCall(200, callback);
+        });
     
         return button;
     }

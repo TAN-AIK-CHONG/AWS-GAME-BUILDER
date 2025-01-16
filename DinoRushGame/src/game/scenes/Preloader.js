@@ -45,6 +45,8 @@ export class Preloader extends Scene
         this.load.image('heart', 'heart.png');
         this.load.image('gem', 'gem.png');
         this.load.image('gameBackground1', 'gameBackground1.png');
+        this.load.audio('buttonHoverAudio','click3.ogg');
+        this.load.audio('buttonClickAudio', 'click4.ogg');
 
     }
 

@@ -200,14 +200,15 @@ export class GameScene extends Scene
     {
         this.lives --;
         this.dino.setPosition(this.spawnX,this.spawnY);
+        
         // Update hearts display
-        this.hearts.clear(true, true);
-        this.hearts = this.add.group({
-            key: 'heart',
-            repeat: this.lives - 1,
-            setXY: { x: 150, y: 30, stepX: 32 }
+        this.hearts.children.iterate((child, index) => {
+            if (index >= this.lives) {
+                child.setTint(0x101010); // Set to black
+            } else {
+                child.clearTint(); // Clear tint for remaining lives
+            }
         });
-
         this.hearts.children.iterate((child) => {
             child.setScrollFactor(0).setDepth(100).setScale(0.8);
         });

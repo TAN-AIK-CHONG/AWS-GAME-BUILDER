@@ -39,7 +39,7 @@ export class GameScene extends Scene
         //hhurt
         this.anims.create({
             key: 'hurt',
-            frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 16 }),
+            frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 15 }),
             frameRate: 10,
             repeat: -1
         });

@@ -204,7 +204,7 @@ export class GameScene extends Scene
     loseLife ()
     {
         this.isHurt = true;
-        //this.lives--;
+        this.lives--;
         const pushDirection = this.dino.flipX ? 200 : -200;
         this.dino.setVelocity(pushDirection,-300);
 

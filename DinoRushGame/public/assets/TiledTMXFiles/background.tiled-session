@@ -44,10 +44,10 @@
         },
         "level2.tmx": {
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1198,
-                "y": 380.33333333333337
+                "x": 264.6666666666667,
+                "y": 202.99999999999997
             }
         },
         "level2.tmx#tilemap": {

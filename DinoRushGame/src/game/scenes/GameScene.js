@@ -25,7 +25,7 @@ export class GameScene extends Scene
 
         
         //adjust body size of dino
-        this.dino.body.setSize(this.dino.width-9, this.dino.height-6);
+        this.dino.body.setSize(this.dino.width-10, this.dino.height-6);
         
         // dino animations
         // walking

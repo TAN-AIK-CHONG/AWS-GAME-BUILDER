@@ -3,19 +3,23 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1.tmx",
+    "activeFile": "level2.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "exportAsImage.visibleLayersOnly": false,
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
         "background.tmx": {
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 601,
-                "y": 178
+                "x": 770,
+                "y": 206
             }
         },
         "background.tmx#tilemap-backgrounds": {
@@ -25,7 +29,7 @@
             "scale": 0.9753333333333333,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 404.47710184552295,
+                "x": 450.1025290498975,
                 "y": 135.33834586466168
             }
         },
@@ -36,6 +40,24 @@
             "scaleInDock": 1
         },
         "level1.tmx#tilemap-characters": {
+            "scaleInDock": 1
+        },
+        "level2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 906.6666666666667,
+                "y": 248.66666666666663
+            }
+        },
+        "level2.tmx#tilemap": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "level2.tmx#tilemap-backgrounds": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#tilemap-characters": {
             "scaleInDock": 1
         }
     },
@@ -49,18 +71,21 @@
     "map.width": 50,
     "openFiles": [
         "background.tmx",
-        "level1.tmx"
+        "level1.tmx",
+        "level2.tmx"
     ],
     "project": "background.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "level2.tmx",
         "background.tmx",
         "level1.tmx"
     ],
     "tileset.embedInMap": true,
-    "tileset.spacing": 1,
+    "tileset.margin": 1,
+    "tileset.spacing": 0,
     "tileset.tileSize": {
-        "height": 24,
-        "width": 24
+        "height": 18,
+        "width": 18
     }
 }

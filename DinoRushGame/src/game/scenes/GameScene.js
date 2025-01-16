@@ -25,9 +25,10 @@ export class GameScene extends Scene
 
         
         //adjust body size of dino
-        this.dino.body.setSize(this.dino.width-9, this.dino.height-6);
+        this.dino.body.setSize(this.dino.width-10, this.dino.height-6);
         
         // dino animations
+        // walking
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dino', { start: 3, end: 9 }),
@@ -68,7 +69,7 @@ export class GameScene extends Scene
         });
 
         this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+            child.setScrollFactor(0).setDepth(100).setScale(0.7);
         });
 
         // display gems
@@ -103,6 +104,8 @@ export class GameScene extends Scene
         //camera follow dino
         this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 100);
 
+        // isHurt flag
+        this.isHurt = false;
         
 
         //start timer
@@ -131,6 +134,18 @@ export class GameScene extends Scene
         if (super.update) {
             super.update();
         }
+
+        //update time
+        this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+        const elapsedTime = this.elapsedTime;
+        const hours = Math.floor(elapsedTime / 3600);
+        const minutes = Math.floor((elapsedTime % 3600) / 60);
+        const seconds = elapsedTime % 60;
+
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        this.timeText.setText(` Time:${formattedTime}`);
+
+        if (this.isHurt) return;
 
         //speed constants
         const groundSpeed = 300;
@@ -175,23 +190,38 @@ export class GameScene extends Scene
         {
             this.dino.setVelocityY(jumpVelocity);
         }
-
-        //update time
-        this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
-        const elapsedTime = this.elapsedTime;
-        const hours = Math.floor(elapsedTime / 3600);
-        const minutes = Math.floor((elapsedTime % 3600) / 60);
-        const seconds = elapsedTime % 60;
-
-        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        this.timeText.setText(` Time:${formattedTime}`);
     }
 
-    // Call this function when dino dies
+    // Call this function when dino is hurt
     loseLife ()
     {
+        this.isHurt = true;
         this.lives --;
-        this.dino.setPosition(this.spawnX,this.spawnY);
+        const pushDirection = this.dino.flipX ? 200 : -200;
+        this.isHurt = true;
+        this.dino.setVelocity(pushDirection,-300);
+
+
+        //add sound later
+        // hurt anim
+        this.tweens.add({
+            targets: this.dino,
+            alpha: 0,
+            ease: 'Linear',
+            duration: 100,
+            repeat: 5,
+            yoyo: true,
+            onStart: () => {
+                this.dino.setFrame(15);
+            },
+            onYoyo: () => {
+                this.dino.setFrame(this.dino.frame.name === 15 ? 14 : 15);
+            },
+            onComplete: () => {
+                this.dino.alpha = 1; 
+                this.dino.setFrame(0); // Reset to the default frame
+            }
+        });
         
         // Update hearts display
         this.hearts.children.iterate((child, index) => {
@@ -202,7 +232,7 @@ export class GameScene extends Scene
             }
         });
         this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+            child.setScrollFactor(0).setDepth(100).setScale(0.7);
         });
         if (this.lives <= 0)
         {
@@ -218,6 +248,9 @@ export class GameScene extends Scene
 
             this.scene.stop();
         }
+        this.time.delayedCall(1000, () => {
+            this.isHurt = false;
+        });
     }
 
     collectGem (dino,gem)

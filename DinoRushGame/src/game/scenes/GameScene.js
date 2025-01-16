@@ -69,7 +69,7 @@ export class GameScene extends Scene
         });
 
         this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+            child.setScrollFactor(0).setDepth(100).setScale(0.7);
         });
 
         // display gems
@@ -232,7 +232,7 @@ export class GameScene extends Scene
             }
         });
         this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.8);
+            child.setScrollFactor(0).setDepth(100).setScale(0.7);
         });
         if (this.lives <= 0)
         {

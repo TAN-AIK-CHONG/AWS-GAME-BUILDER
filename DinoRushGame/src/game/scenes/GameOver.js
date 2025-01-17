@@ -37,6 +37,7 @@ export class GameOver extends Scene
         // Add hover effect
         mainMenuButtonImage.on('pointerover', () => {
             mainMenuButtonImage.setTint(0xdddddd); // Lighten button on hover
+            this.sound.play('buttonHoverAudio');
         });
     
         mainMenuButtonImage.on('pointerout', () => {
@@ -44,6 +45,7 @@ export class GameOver extends Scene
         });
 
         mainMenuButtonImage.on('pointerdown', () => {
+            this.sound.play('buttonClickAudio'); // Play click sound
             this.scene.start('MainMenu');
             this.scene.stop();
         });

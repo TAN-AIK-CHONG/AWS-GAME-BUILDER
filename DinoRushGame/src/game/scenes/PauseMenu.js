@@ -34,6 +34,7 @@ export class PauseMenu extends Scene
         // Add hover effect
         resumeButtonImage.on('pointerover', () => {
             resumeButtonImage.setTint(0xdddddd); // Lighten button on hover
+            this.sound.play('buttonHoverAudio');
         });
     
         resumeButtonImage.on('pointerout', () => {
@@ -41,6 +42,7 @@ export class PauseMenu extends Scene
         });
 
         resumeButtonImage.on('pointerdown', () => {
+            this.sound.play('buttonClickAudio'); // Play click sound
             this.scene.get(this.returnScene).resumeGame(this.returnScene);
             this.scene.stop();
         });
@@ -56,6 +58,7 @@ export class PauseMenu extends Scene
         // Add hover effect
         mainMenuButtonImage.on('pointerover', () => {
             mainMenuButtonImage.setTint(0xdddddd); // Lighten button on hover
+            this.sound.play('buttonHoverAudio');
         });
     
         mainMenuButtonImage.on('pointerout', () => {
@@ -63,6 +66,7 @@ export class PauseMenu extends Scene
         });
 
         mainMenuButtonImage.on('pointerdown', () => {
+            this.sound.play('buttonClickAudio'); // Play click sound
             this.showConfirmationPrompt(resumeButtonImage, mainMenuButtonImage);
         });
 

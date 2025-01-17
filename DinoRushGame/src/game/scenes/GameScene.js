@@ -98,11 +98,13 @@ export class GameScene extends Scene
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
+            this.sound.play('buttonClickAudio');
             this.pauseGame(this.scene.key);
         })
         // Add hover effect
         pauseButtonImage.on('pointerover', () => {
             pauseButtonImage.setTint(0xdddddd);
+            this.sound.play('buttonHoverAudio');
         });
     
         pauseButtonImage.on('pointerout', () => {
@@ -209,7 +211,7 @@ export class GameScene extends Scene
         this.dino.setVelocity(pushDirection,-300);
 
         //add sound later
-
+        this.sound.play('scream');
 
         // hurt anim
         this.dino.play('hurt', true);
@@ -247,6 +249,7 @@ export class GameScene extends Scene
     collectGem (dino,gem)
     {
         this.gems++;
+        this.sound.play('pickupgem');
         const gemImage = this.gemIcons.getChildren()[this.gems - 1];
         gemImage.clearTint();
         gem.destroy();
@@ -259,6 +262,7 @@ export class GameScene extends Scene
     handleFlag () 
     {
         if (this.gems === 3) {
+            this.sound.play('nextlevel');
             const spawnData = sceneConfig[this.nextScene];
             this.scene.start(this.nextScene, spawnData);
         }
@@ -266,6 +270,7 @@ export class GameScene extends Scene
             const message = this.add.text(512, 50, 'Not enough gems!', {
                 fontFamily: 'Oxanium', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
             }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
+
 
             this.time.delayedCall(1000, () => {
                 this.tweens.add({

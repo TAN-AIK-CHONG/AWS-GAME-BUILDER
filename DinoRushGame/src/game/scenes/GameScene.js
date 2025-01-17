@@ -15,6 +15,18 @@ export class GameScene extends Scene
 
     create (data)
     {
+        // timer for game
+        this.timer = this.time.addEvent({
+            delay: 1000,
+            loop: true,
+            callback: this.updateTimer,
+            callbackScope: this,
+            paused: false,
+        });
+
+        this.elapsedTime = data.elapsedTime || 0;
+
+        this.timeText = this.add.text(16, 80, ' Time:' + this.formatTime(this.elapsedTime), { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
 
         //spawn point for dino
         this.spawnX = data.spawnX
@@ -90,10 +102,6 @@ export class GameScene extends Scene
             this.gemIcons.add(gemIcon);
         }
         
-
-        // display time
-        this.timeText = this.add.text(16, 80, ' Time: 00:00:00', { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
-
         // pause button
         const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
@@ -116,10 +124,6 @@ export class GameScene extends Scene
 
         // isHurt flag
         this.isHurt = false;
-        
-
-        //start timer
-        this.startTime = this.time.now;
 
         //for debugging
         this.input.on('pointerdown', (pointer) => {
@@ -127,14 +131,28 @@ export class GameScene extends Scene
         });
     }
 
+    updateTimer() {
+        this.elapsedTime += 1;
+        this.timeText.setText(' Time:' + this.formatTime(this.elapsedTime));
+    }
+
+    formatTime(time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
     pauseGame (currentScene)
     {
+        this.timer.paused = true;
         this.scene.pause();
         this.scene.launch('PauseMenu', { returnScene: currentScene });
     }
 
     resumeGame (currentScene)
     {
+        this.timer.paused = false;
         this.scene.resume(currentScene);
     }
     
@@ -144,16 +162,6 @@ export class GameScene extends Scene
         if (super.update) {
             super.update();
         }
-
-        //update time
-        this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
-        const elapsedTime = this.elapsedTime;
-        const hours = Math.floor(elapsedTime / 3600);
-        const minutes = Math.floor((elapsedTime % 3600) / 60);
-        const seconds = elapsedTime % 60;
-
-        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        this.timeText.setText(` Time:${formattedTime}`);
 
         if (this.isHurt) return;
 
@@ -229,13 +237,7 @@ export class GameScene extends Scene
         });
         if (this.lives <= 0)
         {
-            this.elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
-            const elapsedTime =this.elapsedTime;
-            const hours = Math.floor(elapsedTime / 3600);
-            const minutes = Math.floor((elapsedTime % 3600) / 60);
-            const seconds = elapsedTime % 60;
-
-            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            const formattedTime = this.formatTime(this.elapsedTime);
             
             this.scene.start('GameOver', { time: formattedTime });
 
@@ -264,7 +266,11 @@ export class GameScene extends Scene
         if (this.gems === 3) {
             this.sound.play('nextlevel');
             const spawnData = sceneConfig[this.nextScene];
-            this.scene.start(this.nextScene, spawnData);
+            this.scene.start(this.nextScene, {
+                spawnX: spawnData.spawnX,
+                spawnY: spawnData.spawnY,
+                elapsedTime: this.elapsedTime 
+            });
         }
         else {
             const message = this.add.text(512, 50, 'Not enough gems!', {

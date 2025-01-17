@@ -94,6 +94,32 @@ export class MainMenu extends Scene
         // Add buttons to the container
         buttonContainer.add([playButton, instructionsButton, aboutButton]);
 
+        // Add GitHub button
+        const githubButton = this.add.image(970, 40, 'github').setScale(0.15).setInteractive().setScrollFactor(0).setDepth(100);
+        this.add.container(0, 0, [githubButton]).setDepth(100);
+
+        // Add hover effect
+        githubButton.on('pointerover', () => {
+            githubButton.setTint(0xdddddd);
+
+            this.contributeText = this.add.text(githubButton.x, githubButton.y + 35, 'Contribute', {
+                fontFamily: 'Oxanium', fontSize: '18px', fill: '#ffffff', stroke: '#000000', strokeThickness: 2
+            }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
+        });
+
+        githubButton.on('pointerout', () => {
+            githubButton.clearTint();
+
+            // Remove "contribute" message
+            if (this.contributeText) {
+                this.contributeText.destroy();
+            }
+        });
+
+        githubButton.on('pointerdown', () => {
+            window.open('https://github.com/TAN-AIK-CHONG/Dino-Rush-Game', '_blank');
+        });
+
         EventBus.emit('current-scene-ready', this);
     }
 

@@ -38,23 +38,6 @@ export class GameScene extends Scene
         
         //adjust body size of dino
         this.dino.body.setSize(this.dino.width-10, this.dino.height-6);
-        
-        // dino animations
-        // walking
-        this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('dino', { start: 3, end: 9 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        //hhurt
-        this.anims.create({
-            key: 'hurt',
-            frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 15 }),
-            frameRate: 10,
-            repeat: -1
-        });
 
         this.dino.play('walk');
 

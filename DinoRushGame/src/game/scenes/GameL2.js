@@ -5,7 +5,7 @@ export class GameL2 extends GameScene
 {
     constructor ()
     {
-        super('GameL2','GameOver');
+        super('GameL2','Finish');
     }
 
     create (data)
@@ -103,5 +103,39 @@ export class GameL2 extends GameScene
 
 
         EventBus.emit('current-scene-ready', this);
+    }
+
+    //Override changeScene for last level to go to finish scene
+    changeScene ()
+    {
+        this.scene.start('Finish', {time: this.elapsedTime });
+        this.scene.stop();
+    }
+
+    // for now override handleFlag to go to finish scene, but put it at last level
+    handleFlag () 
+    {
+        if (this.gems === 3) {
+            this.sound.play('nextlevel');
+            this.scene.start('Finish', {time: this.elapsedTime });
+        }
+        else {
+            const message = this.add.text(512, 50, 'Not enough gems!', {
+                fontFamily: 'Oxanium', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
+            }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
+
+
+            this.time.delayedCall(1000, () => {
+                this.tweens.add({
+                    targets: message,
+                    alpha: 0,
+                    duration: 1000,
+                    ease: 'Power2',
+                    onComplete: () => {
+                        message.destroy();
+                    }
+                });
+            });
+        }
     }
 }

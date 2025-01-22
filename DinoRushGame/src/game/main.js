@@ -6,6 +6,7 @@ import { MainMenu } from './scenes/MainMenu';
 import { PauseMenu } from './scenes/PauseMenu';
 import Phaser from 'phaser';
 import { Preloader } from './scenes/Preloader';
+import { Finish } from './scenes/Finish';
 
 // Find out more information about the Game Config at:
 // https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -26,7 +27,8 @@ const config = {
         GameL1,
         GameL2,
         GameOver,
-        PauseMenu
+        PauseMenu,
+        Finish
     ]
 };
 

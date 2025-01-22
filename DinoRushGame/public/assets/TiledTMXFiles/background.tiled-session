@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level2.tmx",
+    "activeFile": "level1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -15,11 +15,11 @@
             "scaleInEditor": 1
         },
         "background.tmx": {
-            "scale": 0.5,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 600,
-                "y": 177
+                "x": 613.3333333333333,
+                "y": 298.6666666666667
             }
         },
         "background.tmx#tilemap-backgrounds": {
@@ -27,10 +27,10 @@
         },
         "level1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 433.33333333333337,
-                "y": 111.33333333333326
+                "x": 493.99999999999994,
+                "y": 78.66666666666669
             }
         },
         "level1.tmx#tilemap": {
@@ -43,11 +43,14 @@
             "scaleInDock": 1
         },
         "level2.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 264.6666666666667,
-                "y": 202.99999999999997
+                "x": 720.6666666666666,
+                "y": 224.66666666666669
             }
         },
         "level2.tmx#tilemap": {
@@ -70,16 +73,14 @@
     "map.tileWidth": 24,
     "map.width": 50,
     "openFiles": [
-        "background.tmx",
-        "level1.tmx",
-        "level2.tmx"
+        "level1.tmx"
     ],
     "project": "background.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "background.tmx",
         "level1.tmx",
-        "level2.tmx"
+        "level2.tmx",
+        "background.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 1,

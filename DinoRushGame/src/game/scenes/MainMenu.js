@@ -61,6 +61,22 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(512, 200, 'logo').setDepth(100);
 
+        
+        /*THIS IS A HOTFIX! DO SOMEHTING ELSE LIKE HAVE A DEDICATED MUSIC SCENE INSTEAD*/ 
+        // Check if there's already a sound instance for bgMusicMainMenu
+        const existingMusic = this.sound.get('bgMusicMainMenu');
+        
+        // If not found or not playing, create and play it
+        if (!existingMusic) {
+            this.bgMusic = this.sound.add('bgMusicMainMenu', { loop: true });
+            this.bgMusic.play();
+        } else {
+            // Optionally, ensure it's still looping
+            if (!existingMusic.isPlaying) {
+                existingMusic.play();
+            }
+        }
+
         // Create a container for the buttons
         const buttonContainer = this.add.container(512, 300);
 

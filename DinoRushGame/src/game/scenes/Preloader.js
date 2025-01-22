@@ -8,36 +8,67 @@ export class Preloader extends Scene
     }
 
     init ()
-    {
-        //  We loaded this image in our Boot Scene, so we can display it here
+    { 
+        // Display the background
         this.add.image(512, 384, 'background');
+        
+        // Display the logo
+        this.logo = this.add.image(512, 300, 'logo').setDepth(100);
 
-        //  A simple progress bar. This is the outline of the bar.
-        this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
+        // A simple progress bar outline
+        this.outline = this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
 
-        //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
-        const bar = this.add.rectangle(512-230, 384, 4, 28, 0xffffff);
+        // The progress bar (filled)
+        this.bar = this.add.rectangle(512 - 230, 384, 4, 28, 0xffffff);
 
-        //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
+        // Update the progress bar width as loading progresses
         this.load.on('progress', (progress) => {
+            this.bar.width = 4 + (460 * progress);
+        });
 
-            //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
-            bar.width = 4 + (460 * progress);
-
+            // When loading is complete, show a Start button
+            this.load.on('complete', () => {
+                // Hide the progress bar
+                this.bar.setVisible(false);
+                this.outline.setVisible(false);
+    
+                // Create a Start button (you can style it differently or use an image instead)
+                const buttonImage = this.add.image(0, 0, 'uiButton')
+                    .setInteractive()
+                    .setScale(0.35);
+    
+                const buttonText = this.add.text(0, -10, 'START', {
+                    fontFamily: 'Oxanium', fontSize: 18, color: '#411909'
+                }).setOrigin(0.5);
+    
+                const startButton = this.add.container(512, 400, [buttonImage, buttonText])
+                    .setSize(buttonImage.width * 0.35, buttonImage.height * 0.35)
+                    .setInteractive();
+    
+                // Add hover effect to the image
+                buttonImage.on('pointerover', () => {
+                    buttonImage.setTint(0xdddddd);
+                });
+                buttonImage.on('pointerout', () => {
+                    buttonImage.clearTint();
+                });
+    
+                // On click, go to MainMenu
+                buttonImage.on('pointerdown', () => {
+                    this.scene.start('MainMenu');
+                });
         });
     }
 
     preload ()
     {
-        //  Load the assets for the game - Replace with your own assets
+        // Adjust the asset path for your project
         this.load.setPath('assets');
 
-        this.load.image('logo', 'logo.png');
+        // Load your assets
         this.load.image('star', 'star.png');
         this.load.spritesheet('dino', 'DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
         this.load.image('pausebutton', 'pausebutton (2).png');
-        this.load.image('uiButton','uiButton.png');
-        this.load.image('uiButton','uiButtonPressed.png');
         this.load.image('scroll','scroll.png');
         this.load.tilemapTiledJSON('l1', 'jsonmaps/l1.json');
         this.load.tilemapTiledJSON('l2', 'jsonmaps/l2.json');
@@ -51,16 +82,12 @@ export class Preloader extends Scene
         this.load.audio('scream', 'audio/scream.wav');
         this.load.audio('pickupgem', 'audio/pickupgem.mp3');
         this.load.audio('nextlevel', 'audio/nextlevel.mp3');
-
+        this.load.audio('bgMusicMainMenu', 'audio/bgMusic.mp3');
     }
 
     create ()
     {
-        //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
-        //  For example, you can define global animations here, so we can use them in other scenes.
-        //global animations
-        // dino animations
-        // walking
+        // Create any global animations or set up anything else you need
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('dino', { start: 3, end: 9 }),
@@ -68,17 +95,11 @@ export class Preloader extends Scene
             repeat: -1
         });
         
-        //hurt
         this.anims.create({
             key: 'hurt',
             frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 15 }),
             frameRate: 10,
             repeat: -1
         });
-
-        //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('MainMenu');
     }
 }
-
-/* PRELOADER IS THE LOADING PAGE */

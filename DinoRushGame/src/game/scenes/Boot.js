@@ -13,6 +13,9 @@ export class Boot extends Scene
         //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
 
         this.load.image('background', 'assets/background.jpg');
+        this.load.image('logo', 'assets/logo.png');
+        this.load.image('uiButton','assets/uiButton.png');
+        this.load.image('uiButton','assets/uiButtonPressed.png');
     }
 
     create ()
@@ -20,5 +23,3 @@ export class Boot extends Scene
         this.scene.start('Preloader');
     }
 }
-
-/* BOOT LOADS ANY ASSETS IN FIRST, THEN PRELOADER IS THE LOADING PAGE*/

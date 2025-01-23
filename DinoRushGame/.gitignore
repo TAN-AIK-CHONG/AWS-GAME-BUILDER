@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temp files
+DinoRushGame/public/assets/TiledTMXFiles/*.tiled-project
+DinoRushGame/public/assets/TiledTMXFiles/*.tiled-session

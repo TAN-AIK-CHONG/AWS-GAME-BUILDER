@@ -110,20 +110,13 @@ export class GameL3 extends GameScene {
         
             // Initial velocity
 
-            enemy.body.setVelocityX(500); // Start moving to the right
+            //enemy.body.setVelocityX(500); // Start moving to the right
             console.log(`Before: Velocity X = ${enemy.body.velocity.x}`);
             
 
         
             // Add collider with foreground
-            this.physics.add.collider(this.enemiesGroup, foreground, (enemy) => {
-                //console.log(`Before: Velocity X = ${enemy.body.velocity.x}`);
-                if (enemy.body.blocked.left || enemy.body.blocked.right) {
-                    enemy.body.setVelocityX(enemy.body.velocity.x * -1);
-                    enemy.flipX = !enemy.flipX;
-                    console.log(`After: Velocity X = ${enemy.body.velocity.x}`);
-                }
-            });
+            this.physics.add.collider(this.enemiesGroup, foreground);
         
             // Add to enemies group
             this.enemiesGroup.add(enemy);
@@ -170,5 +163,24 @@ export class GameL3 extends GameScene {
                 });
             });
         }
+    }
+
+    update() {
+        super.update();
+        const speed = 500;
+        
+        this.enemiesGroup.children.iterate((enemy) => {
+            // If not moving, start moving right
+            if (enemy.body.velocity.x === 0) {
+                enemy.setVelocityX(speed);
+            }
+            
+            // Change direction when blocked
+            if (enemy.body.blocked.right) {
+                enemy.setVelocityX(-speed);
+            } else if (enemy.body.blocked.left) {
+                enemy.setVelocityX(speed);
+            }
+        });
     }
 }

@@ -11,11 +11,33 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         },
         "#tilemap": {
             "scaleInEditor": 1
+        },
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-a.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 208,
+                "y": 130
+            }
+        },
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-b.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 118.5,
+                "y": 145
+            }
+        },
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tileset-characters.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tileset-tiles.tsx": {
+            "scaleInDock": 1
         },
         "background.tmx": {
             "scale": 0.75,
@@ -49,8 +71,8 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 337.3333333333333,
-                "y": 264
+                "x": 712,
+                "y": 242.66666666666669
             }
         },
         "level2.tmx#tilemap": {
@@ -64,15 +86,11 @@
             "scaleInDock": 1
         },
         "level3.tmx": {
-            "expandedObjectLayers": [
-                6,
-                3
-            ],
-            "scale": 1,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 329,
-                "y": 338
+                "x": 547.5,
+                "y": 170
             }
         },
         "level3.tmx#tilemap": {
@@ -97,6 +115,8 @@
     "project": "background.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-b.tmx",
+        "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-a.tmx",
         "level3.tmx",
         "level1.tmx",
         "level2.tmx",

@@ -167,7 +167,7 @@ export class GameL3 extends GameScene {
 
     update() {
         super.update();
-        const speed = 500;
+        const speed = 250;
         
         this.enemiesGroup.children.iterate((enemy) => {
             // If not moving, start moving right

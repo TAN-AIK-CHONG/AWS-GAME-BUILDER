@@ -66,19 +66,18 @@ export class Preloader extends Scene
         this.load.setPath('assets');
 
         // Load your assets
-        this.load.image('star', 'star.png');
-        this.load.spritesheet('dino', 'DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
-        this.load.image('pausebutton', 'pausebutton (2).png');
-        this.load.image('scroll','scroll.png');
+        this.load.spritesheet('dino', 'gameObjects/DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
+        this.load.image('pausebutton', 'UI/pausebutton (2).png');
+        this.load.image('scroll','UI/scroll.png');
         this.load.tilemapTiledJSON('l1', 'jsonmaps/l1.json');
         this.load.tilemapTiledJSON('l2', 'jsonmaps/l2.json');
         this.load.tilemapTiledJSON('l3', 'jsonmaps/l3.json');
         this.load.image('tileset', 'tilemap.png');
         this.load.image('characterset', 'tilemap-characters.png');
-        this.load.image('heart', 'heart.png');
-        this.load.image('gem', 'gem.png');
-        this.load.image('gameBackground1', 'gameBackground1.png');
-        this.load.image('github', 'github-mark.png');
+        this.load.image('heart', 'gameObjects/heart.png');
+        this.load.image('gem', 'gameObjects/gem.png');
+        this.load.image('gameBackground1', 'backgrounds/gameBackground1.png');
+        this.load.image('github', 'UI/github-mark.png');
         this.load.audio('buttonHoverAudio','audio/click3.ogg');
         this.load.audio('buttonClickAudio', 'audio/click4.ogg');
         this.load.audio('scream', 'audio/scream.wav');

@@ -32,8 +32,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 607,
-                "y": 146.5
+                "x": 384.5,
+                "y": 173
             }
         },
         "level1.tmx#tilemap": {
@@ -65,17 +65,19 @@
         },
         "level3.tmx": {
             "expandedObjectLayers": [
+                6,
                 3
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 322,
-                "y": 132.66666666666669
+                "x": 152.5,
+                "y": 255.5
             }
         },
         "level3.tmx#tilemap": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level3.tmx#tilemap-characters": {
             "scaleInDock": 1.5

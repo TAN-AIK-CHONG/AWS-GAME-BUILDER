@@ -76,6 +76,9 @@ export class Preloader extends Scene
         this.load.image('characterset', 'tilemap-characters.png');
         this.load.image('heart', 'gameObjects/heart.png');
         this.load.image('gem', 'gameObjects/gem.png');
+        this.load.image('crab1', 'gameObjects/enemy11.png');
+        this.load.image('crab2', 'gameObjects/enemy12.png');
+        this.load.image('crab3', 'gameObjects/enemy13.png');
         this.load.image('gameBackground1', 'backgrounds/gameBackground1.png');
         this.load.image('github', 'UI/github-mark.png');
         this.load.audio('buttonHoverAudio','audio/click3.ogg');
@@ -100,6 +103,16 @@ export class Preloader extends Scene
             key: 'hurt',
             frames: this.anims.generateFrameNumbers('dino', { start: 14, end: 15 }),
             frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'crabWalk',
+            frames: [
+                { key: 'crab1' },
+                { key: 'crab2' }
+            ],
+            frameRate: 5,
             repeat: -1
         });
     }

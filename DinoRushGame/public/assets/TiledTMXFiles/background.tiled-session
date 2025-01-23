@@ -68,11 +68,11 @@
                 6,
                 3
             ],
-            "scale": 2,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 152.5,
-                "y": 255.5
+                "x": 329,
+                "y": 338
             }
         },
         "level3.tmx#tilemap": {
@@ -97,6 +97,7 @@
     "project": "background.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "level3.tmx",
         "level1.tmx",
         "level2.tmx",
         "background.tmx"

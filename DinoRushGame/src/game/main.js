@@ -1,6 +1,7 @@
 import { Boot } from './scenes/Boot';
 import { GameL1 } from './scenes/GameL1';
 import { GameL2 } from './scenes/GameL2';
+import { GameL3 } from './scenes/GameL3';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
 import { PauseMenu } from './scenes/PauseMenu';
@@ -26,6 +27,7 @@ const config = {
         MainMenu,
         GameL1,
         GameL2,
+        GameL3,
         GameOver,
         PauseMenu,
         Finish

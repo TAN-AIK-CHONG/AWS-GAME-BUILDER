@@ -34,9 +34,9 @@ export class GameL1 extends GameScene
         //import tilemap
         const map = this.make.tilemap({ key: 'l1' });
         const tileset = map.addTilesetImage('tilemap', 'tileset');
-    
-        const decorations = map.createLayer('Decorations', tileset, 0, 0).setScale(3);
+        
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
+        const decorations = map.createLayer('Decorations', tileset, 0, 0).setScale(3);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
     
         foreground.setCollisionByProperty({ collides: true });

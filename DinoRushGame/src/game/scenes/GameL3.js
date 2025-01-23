@@ -171,15 +171,15 @@ export class GameL3 extends GameScene {
         
         this.enemiesGroup.children.iterate((enemy) => {
             // If not moving, start moving right
-            if (enemy.body.velocity.x === 0) {
-                enemy.setVelocityX(speed);
+            if (Math.abs(enemy.body.velocity.x) != speed && !enemy.body.blocked.right) {
+                enemy.body.setVelocityX(speed);
             }
             
             // Change direction when blocked
             if (enemy.body.blocked.right) {
-                enemy.setVelocityX(-speed);
+                enemy.body.setVelocityX(-speed);
             } else if (enemy.body.blocked.left) {
-                enemy.setVelocityX(speed);
+                enemy.body.setVelocityX(speed);
             }
         });
     }

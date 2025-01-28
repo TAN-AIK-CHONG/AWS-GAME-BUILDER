@@ -35,19 +35,14 @@ export class GameScene extends Scene
 
         //dino sprite
         this.dino = this.physics.add.sprite(this.spawnX,this.spawnY,"dino").setScale(4).setDepth(100);
-
-        
-        //adjust body size of dino
         this.dino.body.setSize(this.dino.width-10, this.dino.height-6);
-
         this.dino.play('walk');
-
         this.dino.setCollideWorldBounds(true);
+        this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 100);
 
+        // Game data
         this.lives = 3;
         this.gems = 0;
-
-        // Set common gravity
         this.physics.world.gravity.y = 1000;
 
         // Add common keybindings
@@ -71,7 +66,6 @@ export class GameScene extends Scene
             repeat: this.lives - 1,
             setXY: { x: 150, y: 30, stepX: 32 }
         });
-
         this.hearts.children.iterate((child) => {
             child.setScrollFactor(0).setDepth(100).setScale(0.7);
         });
@@ -79,7 +73,6 @@ export class GameScene extends Scene
         // display gems
         this.gemsText = this.add.text(16, 48, ` Gems: `, { fontSize: '32px', fill: '#000000' }).setScrollFactor(0).setDepth(100);
         this.gemIcons = this.add.group();
-
         for (let i = 0; i < 3; i++) {
             const gemIcon = this.add.image(150 + i * 32, 60, 'gem').setScale(1.5).setScrollFactor(0).setDepth(100);
             gemIcon.setTint(0x101010);
@@ -93,18 +86,13 @@ export class GameScene extends Scene
             this.sound.play('buttonClickAudio');
             this.pauseGame(this.scene.key);
         })
-        // Add hover effect
         pauseButtonImage.on('pointerover', () => {
             pauseButtonImage.setTint(0xdddddd);
             this.sound.play('buttonHoverAudio');
         });
-    
         pauseButtonImage.on('pointerout', () => {
             pauseButtonImage.clearTint();
         });
-
-        //camera follow dino
-        this.cameras.main.startFollow(this.dino, true, 0.1, 0.1, 0, 100);
 
         // isHurt flag
         this.isHurt = false;
@@ -115,6 +103,8 @@ export class GameScene extends Scene
         });
     }
 
+
+    /*Helper Functions*/ 
     updateTimer() {
         this.elapsedTime += 1;
         this.timeText.setText(' Time:' + this.formatTime(this.elapsedTime));
@@ -139,9 +129,14 @@ export class GameScene extends Scene
         this.timer.paused = false;
         this.scene.resume(currentScene);
     }
+
+    changeScene() {
+        this.scene.start(this.nextScene);
+    }
+
+    /*Game Functions*/ 
     
-    update ()
-    {
+    update (){
         // Call the update method of the derived class
         if (super.update) {
             super.update();
@@ -194,46 +189,45 @@ export class GameScene extends Scene
         }
     }
 
-    // Call this function when dino is hurt
-    loseLife ()
-    {
-        this.isHurt = true;
-        this.lives--;
-        const pushDirection = this.dino.flipX ? 200 : -200;
-        this.dino.setVelocity(pushDirection,-300);
-
-        //add sound later
-        this.sound.play('scream');
-
-        // hurt anim
-        this.dino.play('hurt', true);
-        
-        // Update hearts display
-        this.hearts.children.iterate((child, index) => {
-            if (index >= this.lives) {
-                child.setTint(0x101010); // Set to black
-            } else {
-                child.clearTint(); // Clear tint for remaining lives
-            }
-        });
-        this.hearts.children.iterate((child) => {
-            child.setScrollFactor(0).setDepth(100).setScale(0.7);
-        });
-        if (this.lives <= 0)
-        {
-            const formattedTime = this.formatTime(this.elapsedTime);
+    loseLife() {
+        if (!this.isInvulnerable) {
+            this.isInvulnerable = true;
+            this.isHurt = true;
+            this.lives--;
             
-            this.scene.start('GameOver', { time: formattedTime });
-
-            this.scene.stop();
+            const pushDirection = this.dino.flipX ? 200 : -200;
+            this.dino.setVelocity(pushDirection,-300);
+    
+            this.sound.play('scream');
+            this.dino.play('hurt', true);
+            
+            this.hearts.children.iterate((child, index) => {
+                if (index >= this.lives) {
+                    child.setTint(0x101010);
+                } else {
+                    child.clearTint();
+                }
+            });
+    
+            this.hearts.children.iterate((child) => {
+                child.setScrollFactor(0).setDepth(100).setScale(0.7);
+            });
+    
+            if (this.lives <= 0) {
+                const formattedTime = this.formatTime(this.elapsedTime);
+                this.scene.start('GameOver', { time: formattedTime });
+                this.scene.stop();
+                return;
+            }
+    
+            this.time.delayedCall(1000, () => {
+                this.isHurt = false;
+                this.isInvulnerable = false;
+            });
         }
-        this.time.delayedCall(1000, () => {
-            this.isHurt = false;
-        });
     }
 
-    collectGem (dino,gem)
-    {
+    collectGem(dino,gem){
         this.gems++;
         this.sound.play('pickupgem');
         const gemImage = this.gemIcons.getChildren()[this.gems - 1];
@@ -241,9 +235,23 @@ export class GameScene extends Scene
         gem.destroy();
     }
 
-    changeScene() {
-        this.scene.start(this.nextScene);
-    }
+    displayMessage(message){
+        const text = this.add.text(512, 50, message, {
+            fontFamily: 'Oxanium', fontSize: '48px', fill: '#000000', stroke: '#ffffff', strokeThickness: 8
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
+
+        this.time.delayedCall(3000, () => {
+            this.tweens.add({
+                targets: text,
+                alpha: 0,
+                duration: 1000,
+                ease: 'Power2',
+                onComplete: () => {
+                    text.destroy();
+                }
+            });
+        });
+    } 
 
     handleFlag () 
     {
@@ -257,22 +265,36 @@ export class GameScene extends Scene
             });
         }
         else {
-            const message = this.add.text(512, 50, 'Not enough gems!', {
-                fontFamily: 'Oxanium', fontSize: '48px', fill: '#ff0000', stroke: '#ffffff', strokeThickness: 2
-            }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
+            this.displayMessage('Not enough gems!');
+        }
+    }
 
-
-            this.time.delayedCall(1000, () => {
-                this.tweens.add({
-                    targets: message,
-                    alpha: 0,
-                    duration: 1000,
-                    ease: 'Power2',
-                    onComplete: () => {
-                        message.destroy();
-                    }
-                });
+    generateGems(map) {
+        // Debug: Check if map and Gems layer exist
+        console.log('Map:', map);
+        console.log('Layers:', map.objects);
+        
+        try {
+            const gemsObjectLayer = map.getObjectLayer('Gems');
+            if (!gemsObjectLayer) {
+                console.error('No Gems layer found in map');
+                return;
+            }
+            
+            console.log('Gems layer:', gemsObjectLayer);
+            console.log('Gem objects:', gemsObjectLayer.objects);
+    
+            this.gemGroup = this.physics.add.group();
+    
+            gemsObjectLayer.objects.forEach((gemObj) => {
+                console.log('Creating gem at:', gemObj.x * 3, gemObj.y * 3);
+                const gem = this.gemGroup.create(gemObj.x * 3, gemObj.y * 3, 'gem');
+                gem.setOrigin(0, 1);
+                gem.setScale(3);
+                gem.body.setAllowGravity(false);
             });
+        } catch (error) {
+            console.error('Error generating gems:', error);
         }
     }
 }

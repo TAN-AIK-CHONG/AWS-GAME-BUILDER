@@ -1,70 +1,36 @@
 import { Scene } from 'phaser';
 
-export class Preloader extends Scene
-{
-    constructor ()
-    {
+export class Preloader extends Scene {
+    constructor() {
         super('Preloader');
     }
 
-    init ()
-    { 
-        // Display the background
+    preload() {
+        // Create loading UI
         this.add.image(512, 384, 'background');
-        
-        // Display the logo
         this.logo = this.add.image(512, 300, 'logo').setDepth(100);
-
-        // A simple progress bar outline
+        
+        // Progress bar
         this.outline = this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
-
-        // The progress bar (filled)
         this.bar = this.add.rectangle(512 - 230, 384, 4, 28, 0xffffff);
 
-        // Update the progress bar width as loading progresses
-        this.load.on('progress', (progress) => {
-            this.bar.width = 4 + (460 * progress);
+        // Track loading progress
+        this.load.on('progress', (value) => {
+            this.bar.width = 4 + (460 * value);
         });
 
-            // When loading is complete, show a Start button
-            this.load.on('complete', () => {
-                // Hide the progress bar
-                this.bar.setVisible(false);
-                this.outline.setVisible(false);
-    
-                // Create a Start button (you can style it differently or use an image instead)
-                const buttonImage = this.add.image(0, 0, 'uiButton')
-                    .setInteractive()
-                    .setScale(0.35);
-    
-                const buttonText = this.add.text(0, -10, 'START', {
-                    fontFamily: 'Oxanium', fontSize: 18, color: '#411909'
-                }).setOrigin(0.5);
-    
-                const startButton = this.add.container(512, 400, [buttonImage, buttonText])
-                    .setSize(buttonImage.width * 0.35, buttonImage.height * 0.35)
-                    .setInteractive();
-    
-                // Add hover effect to the image
-                buttonImage.on('pointerover', () => {
-                    buttonImage.setTint(0xdddddd);
-                });
-                buttonImage.on('pointerout', () => {
-                    buttonImage.clearTint();
-                });
-    
-                // On click, go to MainMenu
-                buttonImage.on('pointerdown', () => {
-                    this.scene.start('MainMenu');
-                });
+        this.load.on('complete', () => {
+            this.bar.setVisible(false);
+            this.outline.setVisible(false);
+            this.createStartButton();
         });
-    }
 
-    preload ()
-    {
-        // Adjust the asset path for your project
+        this.load.on('loaderror', (file) => {
+            console.error('Error loading asset:', file.src);
+        });
+
+        // Set asset path and load assets
         this.load.setPath('assets');
-
         // Load your assets
         this.load.spritesheet('dino', 'gameObjects/DinoSprites - doux.png', { frameWidth: 24, frameHeight: 24});
         this.load.image('pausebutton', 'UI/pausebutton (2).png');
@@ -87,6 +53,26 @@ export class Preloader extends Scene
         this.load.audio('pickupgem', 'audio/pickupgem.mp3');
         this.load.audio('nextlevel', 'audio/nextlevel.mp3');
         this.load.audio('bgMusicMainMenu', 'audio/bgMusic.mp3');
+    }
+
+    createStartButton() {
+        const buttonImage = this.add.image(0, 0, 'uiButton')
+            .setInteractive()
+            .setScale(0.35);
+
+        const buttonText = this.add.text(0, -10, 'START', {
+            fontFamily: 'Oxanium', 
+            fontSize: 18, 
+            color: '#411909'
+        }).setOrigin(0.5);
+
+        const startButton = this.add.container(512, 400, [buttonImage, buttonText])
+            .setSize(buttonImage.width * 0.35, buttonImage.height * 0.35)
+            .setInteractive();
+
+        buttonImage.on('pointerover', () => buttonImage.setTint(0xdddddd));
+        buttonImage.on('pointerout', () => buttonImage.clearTint());
+        buttonImage.on('pointerdown', () => this.scene.start('MainMenu'));
     }
 
     create ()
@@ -117,3 +103,5 @@ export class Preloader extends Scene
         });
     }
 }
+
+    

@@ -103,10 +103,14 @@ export class GameL3 extends GameScene {
 
         enemiesObjectLayer.forEach((enemyObj) => {
             const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3, 'enemy11');
-            enemy.setOrigin(0, 1); // Top-left origin as per Tiled
+            enemy.setOrigin(0.5); // Top-left origin as per Tiled
+            enemy.body.setCollideWorldBounds(true);
             enemy.setScale(3);
             enemy.body.setAllowGravity(true); // Enable gravity for enemies
             enemy.play('crabWalk'); // Play walk animation
+
+            enemy.body.setSize(20,20); // Adjust size as needed
+            enemy.body.setOffset(2,4); // Adjust offset as needed
         
             // Initial velocity
 
@@ -167,7 +171,7 @@ export class GameL3 extends GameScene {
 
     update() {
         super.update();
-        const speed = 500;
+        const speed = 250;
         
         this.enemiesGroup.children.iterate((enemy) => {
             // If not moving, start moving right

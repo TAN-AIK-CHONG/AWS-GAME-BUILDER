@@ -9,69 +9,36 @@ export class GameL3 extends GameScene {
     create(data) {
         super.create(data);
 
+        // Add background
         const bgWidth = this.textures.get('gameBackground1').getSourceImage().width * 3.7; // Width of the image after scaling
-
         this.backgrounds = []; // Store all background parts
         for (let i = 0; i < 3; i++) { // Add enough to cover the screen
             const bg = this.add.image(i * bgWidth, 150, 'gameBackground1').setScale(3.7).setOrigin(0, 0.5);
             this.backgrounds.push(bg);
         }
+        this.displayMessage('Level 3');
 
-        this.displayLevel('Level 3');
-
-        //import tilemap
+        // Import tilemap
         const map = this.make.tilemap({ key: 'l3' });
-
         const tileset = map.addTilesetImage('tilemap', 'tileset');
-        const characterset = map.addTilesetImage('tilemap-characters', 'characterset');
 
+        // Level layers
         map.createLayer('waterFix', tileset, 0, 0).setScale(3);
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
-        const decorations = map.createLayer('Decorations', tileset, 0, 0).setScale(3);
+        map.createLayer('Decorations', tileset, 0, 0).setScale(3);
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
+        this.spikeGroup = this.generateSpikes(spikes);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
-
 
         foreground.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
-
-        this.spikeGroup = this.physics.add.staticGroup();
-
-        // Create custom physics bodies for each spike tile to adjust the collision area
-        spikes.forEachTile(tile => {
-            if (tile.properties.collides) {
-                // Calculate world position for the spike
-                const worldX = tile.pixelX * 3;
-                const worldY = tile.pixelY * 3;
-
-                // Create an invisible rectangle at the spike's position
-                const spikeHitbox = this.add.rectangle(
-                    worldX + (tile.width * 3) / 2, // center X
-                    worldY + (tile.height * 3) / 2, // center Y
-                    tile.width * 3, // width (scaled)
-                    tile.height * 3 // height (scaled)
-                );
-
-                this.physics.add.existing(spikeHitbox, true); // true makes it static
-
-                this.spikeGroup.add(spikeHitbox);
-
-                spikeHitbox.body.setSize(20, 5); // Adjust
-
-                // Make hitbox invisible
-                spikeHitbox.setAlpha(0);
-            }
-        });
-
+        
+        // Objects
+        // Gems
         this.generateGems(map);
-
-        // Collision with gems
-        this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
-
         // Enemies
         const enemiesObjectLayer = map.getObjectLayer('Enemies').objects;
         this.enemiesGroup = this.physics.add.group();
-
         enemiesObjectLayer.forEach((enemyObj) => {
             const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3, 'enemy11');
             enemy.setOrigin(0.5); // Top-left origin as per Tiled
@@ -79,28 +46,20 @@ export class GameL3 extends GameScene {
             enemy.setScale(3);
             enemy.body.setAllowGravity(true); // Enable gravity for enemies
             enemy.play('crabWalk'); // Play walk animation
-
             enemy.body.setSize(20,20); // Adjust size as needed
             enemy.body.setOffset(2,4); // Adjust offset as needed
-        
-            // Initial velocity
 
-            //enemy.body.setVelocityX(500); // Start moving to the right
             console.log(`Before: Velocity X = ${enemy.body.velocity.x}`);
-            
-
-        
-            // Add collider with foreground
             this.physics.add.collider(this.enemiesGroup, foreground);
-        
-            // Add to enemies group
             this.enemiesGroup.add(enemy);
         });
 
+        // Collisions
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
         this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
         this.physics.add.collider(this.dino, this.enemiesGroup, this.handleEnemyCollision, null, this)
+        this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
 
         //set boundaries
         this.cameras.main.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);

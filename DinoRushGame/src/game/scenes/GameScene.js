@@ -297,4 +297,36 @@ export class GameScene extends Scene
             console.error('Error generating gems:', error);
         }
     }
+
+    generateSpikes(spikeLayer){
+        this.spikeGroup = this.physics.add.staticGroup();
+
+        // Create custom physics bodies for each spike tile to adjust the collision area
+        spikeLayer.forEachTile(tile => {
+            if (tile.properties.collides) {
+                // Calculate world position for the spike
+                const worldX = tile.pixelX * 3;
+                const worldY = tile.pixelY * 3;
+                
+                // Create an invisible rectangle at the spike's position
+                const spikeHitbox = this.add.rectangle(
+                    worldX + (tile.width * 3) / 2,  // center X
+                    worldY + (tile.height * 3) / 2,  // center Y
+                    tile.width * 3,  // width (scaled)
+                    tile.height * 3   // height (scaled)
+                );
+                
+                this.physics.add.existing(spikeHitbox, true);  // true makes it static
+                
+                this.spikeGroup.add(spikeHitbox);
+
+                spikeHitbox.body.setSize(20, 5);  // Adjust 
+                
+                // Make hitbox invisible
+                spikeHitbox.setAlpha(0);
+            }
+        });
+
+        return this.spikeGroup;
+    }
 }

@@ -68,11 +68,11 @@
             "scaleInDock": 1
         },
         "level2.tmx": {
-            "scale": 0.33,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 719.6969696969697,
-                "y": 224.24242424242425
+                "x": 103,
+                "y": 319.5
             }
         },
         "level2.tmx#tilemap": {
@@ -89,11 +89,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 384,
-                "y": 244.66666666666669
+                "x": 1102,
+                "y": 353.5
             }
         },
         "level3.tmx#tilemap": {

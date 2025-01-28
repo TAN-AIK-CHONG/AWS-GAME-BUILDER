@@ -40,6 +40,7 @@ export class GameL3 extends GameScene {
         const tileset = map.addTilesetImage('tilemap', 'tileset');
         const characterset = map.addTilesetImage('tilemap-characters', 'characterset');
 
+        map.createLayer('waterFix', tileset, 0, 0).setScale(3);
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
         const decorations = map.createLayer('Decorations', tileset, 0, 0).setScale(3);
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);

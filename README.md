@@ -1,4 +1,4 @@
-# Dino Rush Game 🦖
+# Dino Rush 🦖
 
 ## Introduction
 Dino Rush is a 2D platformer game with the objective of collecting gems to progress to the next level.  Players are encouraged to try and speed run through the game and aim for faster clear times.  This project is still currently in production.

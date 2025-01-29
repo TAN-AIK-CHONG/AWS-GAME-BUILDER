@@ -190,14 +190,12 @@ export class GameScene extends Scene
     }
 
     loseLife() {
-        if (!this.isInvulnerable) {
-            this.isInvulnerable = true;
+        if (!this.isHurt){
             this.isHurt = true;
             this.lives--;
-            
             const pushDirection = this.dino.flipX ? 200 : -200;
             this.dino.setVelocity(pushDirection,-300);
-    
+
             this.sound.play('scream');
             this.dino.play('hurt', true);
             
@@ -208,24 +206,24 @@ export class GameScene extends Scene
                     child.clearTint();
                 }
             });
-    
+
             this.hearts.children.iterate((child) => {
                 child.setScrollFactor(0).setDepth(100).setScale(0.7);
             });
-    
+
             if (this.lives <= 0) {
                 const formattedTime = this.formatTime(this.elapsedTime);
                 this.scene.start('GameOver', { time: formattedTime });
                 this.scene.stop();
                 return;
             }
-    
-            this.time.delayedCall(1000, () => {
-                this.isHurt = false;
-                this.isInvulnerable = false;
-            });
         }
+
+        this.time.delayedCall(1000, () => {
+            this.isHurt = false;
+        });
     }
+    
 
     collectGem(dino,gem){
         this.gems++;

@@ -3,7 +3,8 @@ import { Scene, Input } from 'phaser';
 const sceneConfig = {
     GameL1: { spawnX: 512, spawnY: 500 },
     GameL2: { spawnX: 340, spawnY: 1038 },
-    GameL3: { spawnX: 50, spawnY: 600}
+    GameL3: { spawnX: 50, spawnY: 600},
+    GameL4: { spawnX: 144, spawnY: 1130}
 };
 
 export class GameScene extends Scene
@@ -80,7 +81,7 @@ export class GameScene extends Scene
         }
         
         // pause button
-        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
+        const pauseButtonImage = this.add.image(980, 40, 'pausebutton').setScale(1).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
             this.sound.play('buttonClickAudio');

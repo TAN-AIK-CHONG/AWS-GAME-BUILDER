@@ -186,6 +186,7 @@ export class GameScene extends Scene
         if ((this.keys.up.isDown || this.keys.space.isDown || this.keys.w.isDown) && this.dino.body.blocked.down)
         {
             this.dino.setVelocityY(jumpVelocity);
+            this.sound.play('jump');
         }
     }
 
@@ -196,7 +197,7 @@ export class GameScene extends Scene
             const pushDirection = this.dino.flipX ? 200 : -200;
             this.dino.setVelocity(pushDirection,-300);
 
-            this.sound.play('scream');
+            this.sound.play('hitDamage');
             this.dino.play('hurt', true);
             
             this.hearts.children.iterate((child, index) => {

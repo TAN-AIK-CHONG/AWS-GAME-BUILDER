@@ -8,7 +8,7 @@ Dino Rush is a 2D platformer game with the objective of collecting gems to progr
 </div>
 
 <p align="center">
-  <a href="https://yourwebsite.com" target="_blank"><strong>🎮 PLAY THE GAME ON BROWSER 🎮</strong></a>
+  <!--- a href="https://yourwebsite.com" target="_blank"><strong>🎮 PLAY THE GAME ON BROWSER 🎮</strong></a --->
 </p>
 
 ---

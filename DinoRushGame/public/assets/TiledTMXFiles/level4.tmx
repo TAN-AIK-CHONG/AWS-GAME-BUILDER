@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="27" tilewidth="18" tileheight="18" infinite="0" nextlayerid="12" nextobjectid="28">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="50" height="27" tilewidth="18" tileheight="18" infinite="0" nextlayerid="12" nextobjectid="29">
  <editorsettings>
   <export target="../jsonmaps/l4.json" format="json"/>
  </editorsettings>
@@ -411,9 +411,9 @@
   <object id="19" gid="205" x="735" y="272.5" width="24" height="24"/>
  </objectgroup>
  <objectgroup id="5" name="CrabEnemies">
-  <object id="5" gid="203" x="792" y="428.5" width="24" height="24"/>
+  <object id="5" gid="203" x="792" y="422.646" width="24" height="24"/>
   <object id="7" gid="203" x="233.333" y="441.333" width="24" height="24"/>
-  <object id="17" gid="200" x="519" y="412.5" width="24" height="24"/>
+  <object id="28" gid="203" x="491.442" y="394.851" width="24" height="24"/>
  </objectgroup>
  <layer id="11" name="waterFix" width="50" height="27">
   <data encoding="csv">

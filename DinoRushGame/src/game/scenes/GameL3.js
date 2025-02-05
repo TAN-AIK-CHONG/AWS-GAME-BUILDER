@@ -29,36 +29,21 @@ export class GameL3 extends GameScene {
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
         this.spikeGroup = this.generateSpikes(spikes);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
+        const enemiesObjectLayer = map.getObjectLayer('Enemies').objects;
 
         foreground.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
         
         // Objects
-        // Gems
         this.generateGems(map);
-        // Enemies
-        const enemiesObjectLayer = map.getObjectLayer('Enemies').objects;
-        this.enemiesGroup = this.physics.add.group();
-        enemiesObjectLayer.forEach((enemyObj) => {
-            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3, 'enemy11');
-            enemy.setOrigin(0.5); // Top-left origin as per Tiled
-            enemy.body.setCollideWorldBounds(true);
-            enemy.setScale(3);
-            enemy.body.setAllowGravity(true); // Enable gravity for enemies
-            enemy.play('crabWalk'); // Play walk animation
-            enemy.body.setSize(20,20); // Adjust size as needed
-            enemy.body.setOffset(2,4); // Adjust offset as needed
-
-            console.log(`Before: Velocity X = ${enemy.body.velocity.x}`);
-            this.physics.add.collider(this.enemiesGroup, foreground);
-            this.enemiesGroup.add(enemy);
-        });
-
+        this.crabs = this.generateCrabEnemies(enemiesObjectLayer);
+        
         // Collisions
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
+        this.physics.add.collider(this.enemiesGroup, foreground);
         this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
-        this.physics.add.collider(this.dino, this.enemiesGroup, this.handleEnemyCollision, null, this)
+        this.physics.add.collider(this.dino, this.enemiesGroup, this.loseLife, null, this)
         this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
 
         //set boundaries
@@ -70,32 +55,8 @@ export class GameL3 extends GameScene {
 
     update() {
         super.update();
-        const speed = 250;
-        
-        this.enemiesGroup.children.iterate((enemy) => {
-            // If not moving, start moving right
-            if (Math.abs(enemy.body.velocity.x) != speed && !enemy.body.blocked.right) {
-                enemy.body.setVelocityX(speed);
-            }
-            
-            // Change direction when blocked
-            if (enemy.body.blocked.right) {
-                enemy.body.setVelocityX(-speed);
-            } else if (enemy.body.blocked.left) {
-                enemy.body.setVelocityX(speed);
-            }
+        this.crabs.children.iterate((enemy) => {
+            this.crabLogic(enemy);
         });
-    }
-
-    handleEnemyCollision(dino, enemy) {
-        // Calculate direction from enemy to dino
-        const pushDirection = dino.x > enemy.x ? 1 : -1;
-        
-        // Push dino away from enemy
-        dino.setVelocityX(100 * pushDirection);
-        dino.setVelocityY(-100);
-        
-        // Call loseLife
-        this.loseLife();
     }
 }

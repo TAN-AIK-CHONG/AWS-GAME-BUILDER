@@ -54,8 +54,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 539.75,
-                "y": 232.125
+                "x": 450.125,
+                "y": 135
             }
         },
         "level1.tmx#tilemap": {
@@ -71,8 +71,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 103,
-                "y": 319.5
+                "x": 720.5,
+                "y": 225
             }
         },
         "level2.tmx#tilemap": {

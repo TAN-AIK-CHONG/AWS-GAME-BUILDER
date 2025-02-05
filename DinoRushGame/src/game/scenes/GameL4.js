@@ -32,14 +32,22 @@ export class GameL4 extends GameScene
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
         this.spikeGroup = this.generateSpikes(spikes);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
-        this.generateGems(map);
+
 
         foreground.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
+
+        // Objects
+        this.generateGems(map);
+        const crabsObjectLayer = map.getObjectLayer('CrabEnemies').objects;
+        this.crabs = this.generateCrabEnemies(crabsObjectLayer);
+        const batsObjectLayer = map.getObjectLayer('BatEnemies').objects;
         
         // Collisions
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
+        this.physics.add.collider(this.crabs, foreground);
+        this.physics.add.collider(this.dino, this.crabs, this.loseLife, null, this);
         this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
         this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
         
@@ -48,6 +56,17 @@ export class GameL4 extends GameScene
         this.physics.world.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);
 
         EventBus.emit('current-scene-ready', this);
+    }
+
+    update(){
+        super.update();
+        this.crabs.children.iterate((enemy) => {
+            this.crabLogic(enemy);
+        });
+        // this.batsGroup.children.iterate((bat) => {
+        //     this.batLogic(bat);
+        // });
+   
     }
 
     //Override changeScene for last level to go to finish scene

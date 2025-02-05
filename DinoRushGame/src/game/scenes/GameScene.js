@@ -105,7 +105,10 @@ export class GameScene extends Scene
     }
 
 
+    /////////////////////////////////////////////////////////////////////////////
     /*Helper Functions*/ 
+    /////////////////////////////////////////////////////////////////////////////
+
     updateTimer() {
         this.elapsedTime += 1;
         this.timeText.setText(' Time:' + this.formatTime(this.elapsedTime));
@@ -132,11 +135,17 @@ export class GameScene extends Scene
     }
 
     changeScene() {
-        this.scene.start(this.nextScene);
+        this.scene.start(this.nextScene, {
+            spawnX: 980,
+            spawnY: 640,
+            elapsedTime: this.elapsedTime 
+        });
     }
 
+    /////////////////////////////////////////////////////////////////////////////
     /*Game Functions*/ 
-    
+    /////////////////////////////////////////////////////////////////////////////
+
     update (){
         // Call the update method of the derived class
         if (super.update) {
@@ -269,6 +278,10 @@ export class GameScene extends Scene
         }
     }
 
+    /////////////////////////////////////////////////////////////////////////////
+    /*Object Layer Functions*/ 
+    /////////////////////////////////////////////////////////////////////////////
+
     generateGems(map) {
         // Debug: Check if map and Gems layer exist
         console.log('Map:', map);
@@ -328,5 +341,44 @@ export class GameScene extends Scene
         });
 
         return this.spikeGroup;
+    }
+
+    generateCrabEnemies(enemyLayer){
+        this.enemiesGroup = this.physics.add.group();
+        enemyLayer.forEach((enemyObj) => {
+            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3, 'enemy11');
+            enemy.setOrigin(0.5); 
+            enemy.body.setCollideWorldBounds(true);
+            enemy.setScale(3);
+            enemy.body.setAllowGravity(true); 
+            enemy.play('crabWalk'); 
+            enemy.body.setSize(20,20); 
+            enemy.body.setOffset(2,4); 
+
+            this.enemiesGroup.add(enemy);
+        });
+
+        return this.enemiesGroup;
+    }
+
+    crabLogic(enemy){
+        // If not moving, start moving right
+        if (Math.abs(enemy.body.velocity.x) != 250 && !enemy.body.blocked.right) {
+            enemy.body.setVelocityX(250);
+        }
+        
+        // Change direction when blocked
+        if (enemy.body.blocked.right) {
+            enemy.body.setVelocityX(-250);
+        } else if (enemy.body.blocked.left) {
+            enemy.body.setVelocityX(250);
+        }
+
+        // Flip sprite based on velocity
+        if (enemy.body.velocity.x < 0) {
+            enemy.setFlipX(false);  // facing left
+        } else if (enemy.body.velocity.x > 0) {
+            enemy.setFlipX(true); // facing right
+        }
     }
 }

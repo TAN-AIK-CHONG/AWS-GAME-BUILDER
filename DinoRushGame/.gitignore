@@ -26,3 +26,6 @@ dist-ssr
 # Temp files
 DinoRushGame/public/assets/TiledTMXFiles/*.tiled-project
 DinoRushGame/public/assets/TiledTMXFiles/*.tiled-session
+
+# API keys
+DinoRushGame/src/firebaseConfig.js

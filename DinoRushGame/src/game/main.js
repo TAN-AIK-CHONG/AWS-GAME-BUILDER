@@ -31,7 +31,10 @@ const config = {
         GameOver,
         PauseMenu,
         Finish
-    ]
+    ],
+    dom: {
+        createContainer: true // Enables the DOM container to interact with HTML elements
+    }
 };
 
 const StartGame = (parent) => {

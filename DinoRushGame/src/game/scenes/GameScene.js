@@ -367,10 +367,10 @@ export class GameScene extends Scene
             enemy.body.setVelocityX(250);
         }
         
-        // Change direction when blocked
-        if (enemy.body.blocked.right) {
+        // Change direction when blocked or colliding with dino
+        if (enemy.body.touching.right || enemy.body.blocked.right) {
             enemy.body.setVelocityX(-250);
-        } else if (enemy.body.blocked.left) {
+        } else if (enemy.body.touching.left || enemy.body.blocked.left) {
             enemy.body.setVelocityX(250);
         }
 
@@ -378,7 +378,7 @@ export class GameScene extends Scene
         if (enemy.body.velocity.x < 0) {
             enemy.setFlipX(false);  // facing left
         } else if (enemy.body.velocity.x > 0) {
-            enemy.setFlipX(true); // facing right
+            enemy.setFlipX(true);  // facing right
         }
     }
 }

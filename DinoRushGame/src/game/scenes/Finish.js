@@ -50,6 +50,7 @@ export class Finish extends Scene {
         const input = document.createElement('input');
         input.type = 'text';
         input.id = 'nameInput';
+        input.maxLength = '20';
         input.placeholder = 'Enter your name';
         input.style.position = 'absolute';
         input.style.left = '880px';
@@ -62,6 +63,22 @@ export class Finish extends Scene {
         input.style.borderRadius = '4px';
         input.style.border = '2px solid #000';
 
+        // Prevent game from handling key events when input is focused
+        const preventGameKeys = (event) => {
+            const blockedKeys = ['w', 'a', 's', 'd', ' '];
+            if (blockedKeys.includes(event.key.toLowerCase())) {
+                event.stopPropagation();
+            }
+        };
+    
+        input.addEventListener('focus', () => {
+            window.addEventListener('keydown', preventGameKeys, true);
+        });
+    
+        input.addEventListener('blur', () => {
+            window.removeEventListener('keydown', preventGameKeys, true);
+        });
+        
         const button = document.createElement('button');
         button.textContent = 'Submit Score';
         button.style.position = 'absolute';

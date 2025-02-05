@@ -3,7 +3,8 @@ import { Scene, Input } from 'phaser';
 const sceneConfig = {
     GameL1: { spawnX: 512, spawnY: 500 },
     GameL2: { spawnX: 340, spawnY: 1038 },
-    GameL3: { spawnX: 50, spawnY: 600}
+    GameL3: { spawnX: 50, spawnY: 600},
+    GameL4: { spawnX: 144, spawnY: 1130}
 };
 
 export class GameScene extends Scene
@@ -80,7 +81,7 @@ export class GameScene extends Scene
         }
         
         // pause button
-        const pauseButtonImage = this.add.image(980, 50, 'pausebutton').setScale(1.2).setInteractive().setScrollFactor(0);
+        const pauseButtonImage = this.add.image(980, 40, 'pausebutton').setScale(1).setInteractive().setScrollFactor(0);
         this.add.container(0, 0, [pauseButtonImage]).setDepth(100);
         pauseButtonImage.on('pointerdown', () => {
             this.sound.play('buttonClickAudio');
@@ -104,7 +105,10 @@ export class GameScene extends Scene
     }
 
 
+    /////////////////////////////////////////////////////////////////////////////
     /*Helper Functions*/ 
+    /////////////////////////////////////////////////////////////////////////////
+
     updateTimer() {
         this.elapsedTime += 1;
         this.timeText.setText(' Time:' + this.formatTime(this.elapsedTime));
@@ -131,11 +135,17 @@ export class GameScene extends Scene
     }
 
     changeScene() {
-        this.scene.start(this.nextScene);
+        this.scene.start(this.nextScene, {
+            spawnX: 980,
+            spawnY: 640,
+            elapsedTime: this.elapsedTime 
+        });
     }
 
+    /////////////////////////////////////////////////////////////////////////////
     /*Game Functions*/ 
-    
+    /////////////////////////////////////////////////////////////////////////////
+
     update (){
         // Call the update method of the derived class
         if (super.update) {
@@ -268,6 +278,10 @@ export class GameScene extends Scene
         }
     }
 
+    /////////////////////////////////////////////////////////////////////////////
+    /*Object Layer Functions*/ 
+    /////////////////////////////////////////////////////////////////////////////
+
     generateGems(map) {
         // Debug: Check if map and Gems layer exist
         console.log('Map:', map);
@@ -327,5 +341,78 @@ export class GameScene extends Scene
         });
 
         return this.spikeGroup;
+    }
+
+    generateCrabEnemies(enemyLayer){
+        this.enemiesGroup = this.physics.add.group();
+        enemyLayer.forEach((enemyObj) => {
+            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3);
+            enemy.setOrigin(0.5); 
+            enemy.body.setCollideWorldBounds(true);
+            enemy.setScale(3);
+            enemy.body.setAllowGravity(true); 
+            enemy.play('crabWalk'); 
+            enemy.body.setSize(20,20); 
+            enemy.body.setOffset(2,4); 
+
+            this.enemiesGroup.add(enemy);
+        });
+
+        return this.enemiesGroup;
+    }
+
+    crabLogic(enemy){
+        // If not moving, start moving right
+        if (Math.abs(enemy.body.velocity.x) != 250 && !enemy.body.blocked.right) {
+            enemy.body.setVelocityX(250);
+        }
+        
+        // Change direction when blocked or colliding with dino
+        if (enemy.body.touching.right || enemy.body.blocked.right) {
+            enemy.body.setVelocityX(-250);
+        } else if (enemy.body.touching.left || enemy.body.blocked.left) {
+            enemy.body.setVelocityX(250);
+        }
+
+        // Flip sprite based on velocity
+        if (enemy.body.velocity.x < 0) {
+            enemy.setFlipX(false);  // facing left
+        } else if (enemy.body.velocity.x > 0) {
+            enemy.setFlipX(true);  // facing right
+        }
+    }
+
+    generateBatEnemies(enemyLayer){
+        this.physics.world.createDebugGraphic();
+
+        this.batsGroup = this.physics.add.group({
+            allowGravity: false  // Set gravity false for whole group
+        });
+        
+        enemyLayer.forEach((enemyObj) => {
+            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3);
+            enemy.setOrigin(0.5); 
+            enemy.body.setCollideWorldBounds(true);
+            enemy.setScale(3);
+            // Set hitbox size and offset
+            enemy.body.setSize(16, 16);  // Adjust size as needed
+            enemy.body.setOffset(4, 4);  // Adjust offset as needed
+            enemy.play('batFly'); 
+
+             // Add vertical oscillation
+            this.tweens.add({
+                targets: enemy,
+                y: enemy.y + 500, // Move 50 pixels down
+                duration: 1000,
+                yoyo: true,
+                repeat: -1,
+                ease: 'Sine.easeInOut'
+            });
+            
+            // Remove individual gravity setting since group handles it
+            this.batsGroup.add(enemy);
+        });
+    
+        return this.batsGroup;
     }
 }

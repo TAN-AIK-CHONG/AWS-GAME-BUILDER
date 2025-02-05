@@ -54,8 +54,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 539.75,
-                "y": 232.125
+                "x": 450.125,
+                "y": 135
             }
         },
         "level1.tmx#tilemap": {
@@ -71,8 +71,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 103,
-                "y": 319.5
+                "x": 720.5,
+                "y": 225
             }
         },
         "level2.tmx#tilemap": {
@@ -102,6 +102,20 @@
         },
         "level3.tmx#tilemap-characters": {
             "scaleInDock": 1.5
+        },
+        "level4.tmx": {
+            "scale": 2,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 186.5,
+                "y": 210.75
+            }
+        },
+        "level4.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "level4.tmx#tilemap-characters": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/jsonmaps",

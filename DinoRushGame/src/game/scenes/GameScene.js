@@ -346,7 +346,7 @@ export class GameScene extends Scene
     generateCrabEnemies(enemyLayer){
         this.enemiesGroup = this.physics.add.group();
         enemyLayer.forEach((enemyObj) => {
-            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3, 'enemy11');
+            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3);
             enemy.setOrigin(0.5); 
             enemy.body.setCollideWorldBounds(true);
             enemy.setScale(3);
@@ -380,5 +380,39 @@ export class GameScene extends Scene
         } else if (enemy.body.velocity.x > 0) {
             enemy.setFlipX(true);  // facing right
         }
+    }
+
+    generateBatEnemies(enemyLayer){
+        this.physics.world.createDebugGraphic();
+
+        this.batsGroup = this.physics.add.group({
+            allowGravity: false  // Set gravity false for whole group
+        });
+        
+        enemyLayer.forEach((enemyObj) => {
+            const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3);
+            enemy.setOrigin(0.5); 
+            enemy.body.setCollideWorldBounds(true);
+            enemy.setScale(3);
+            // Set hitbox size and offset
+            enemy.body.setSize(16, 16);  // Adjust size as needed
+            enemy.body.setOffset(4, 4);  // Adjust offset as needed
+            enemy.play('batFly'); 
+
+             // Add vertical oscillation
+            this.tweens.add({
+                targets: enemy,
+                y: enemy.y + 500, // Move 50 pixels down
+                duration: 1000,
+                yoyo: true,
+                repeat: -1,
+                ease: 'Sine.easeInOut'
+            });
+            
+            // Remove individual gravity setting since group handles it
+            this.batsGroup.add(enemy);
+        });
+    
+        return this.batsGroup;
     }
 }

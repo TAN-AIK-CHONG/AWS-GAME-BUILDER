@@ -46,6 +46,9 @@ export class Preloader extends Scene {
         this.load.image('crab1', 'gameObjects/enemy11.png');
         this.load.image('crab2', 'gameObjects/enemy12.png');
         this.load.image('crab3', 'gameObjects/enemy13.png');
+        this.load.image('bat1', 'gameObjects/bat1.png');
+        this.load.image('bat2', 'gameObjects/bat2.png');
+        this.load.image('bat3', 'gameObjects/bat3.png');
         this.load.image('gameBackground1', 'backgrounds/gameBackground1.png');
         this.load.image('github', 'UI/github-mark.png');
         this.load.audio('buttonHoverAudio','audio/click3.ogg');
@@ -104,6 +107,17 @@ export class Preloader extends Scene {
             frameRate: 5,
             repeat: -1
         });
+
+        this.anims.create({
+            key: 'batFly',
+            frames: [
+                { key: 'bat1' },
+                { key: 'bat2' },
+                { key: 'bat3' }
+            ],
+            frameRate: 5,
+            repeat: -1
+        })
     }
 }
 

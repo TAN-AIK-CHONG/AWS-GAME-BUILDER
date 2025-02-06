@@ -1,6 +1,6 @@
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
-import { getFirestore, collection, addDoc, getDocs, query } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
 import { getFirebaseApp } from '../../firebaseConfig'; // Ensure Firebase is initialized properly
 
 export class Finish extends Scene {
@@ -244,7 +244,7 @@ export class Finish extends Scene {
         document.body.appendChild(popup);
 
         try {
-            const q = query(collection(this.db, 'leaderboard')/*, orderBy('time', 'asc')*/);
+            const q = query(collection(this.db, 'leaderboard'), orderBy('time', 'asc'));
             const querySnapshot = await getDocs(q);
 
             const leaderboardData = [];

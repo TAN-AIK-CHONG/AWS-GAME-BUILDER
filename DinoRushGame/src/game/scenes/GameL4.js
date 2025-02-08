@@ -42,6 +42,7 @@ export class GameL4 extends GameScene
         const crabsObjectLayer = map.getObjectLayer('CrabEnemies').objects;
         this.crabs = this.generateCrabEnemies(crabsObjectLayer);
         const batsObjectLayer = map.getObjectLayer('BatEnemies').objects;
+        this.bats = this.generateBatEnemies(batsObjectLayer);
         
         // Collisions
         this.physics.add.collider(this.dino, foreground);

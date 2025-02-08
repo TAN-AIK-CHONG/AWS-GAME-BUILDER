@@ -140,7 +140,7 @@ export class MainMenu extends Scene
         });
 
         // Add Leaderboard button
-        const leaderboardButton = this.add.image(920, 40, 'leaderboard').setScale(0.07).setInteractive().setScrollFactor(0).setDepth(100);
+        const leaderboardButton = this.add.image(925, 40, 'leaderboard').setScale(0.07).setInteractive().setScrollFactor(0).setDepth(100);
         this.add.container(0, 0, [leaderboardButton]).setDepth(100);
 
         // Add hover effect

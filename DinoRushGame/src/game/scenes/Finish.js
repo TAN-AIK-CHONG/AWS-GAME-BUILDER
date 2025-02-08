@@ -98,12 +98,12 @@ export class Finish extends Scene {
             .setDepth(199)
             .setInteractive();
     
-        const popupBackground = this.add.rectangle(512, 350, 350, 350, 0x000000, 0.95).setOrigin(0.5);
-        const popupTitle = this.add.text(512, 230, "Submit Score", {
+        const popupBackground = this.add.rectangle(512, 350, 350, 320, 0x000000, 0.95).setOrigin(0.5);
+        const popupTitle = this.add.text(512, 250, "Submit Score", {
             fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'left'
         }).setOrigin(0.5);
     
-        const timeText = this.add.text(512, 300, `Your Time: ${this.formatTime(this.elapsedTime)}`, {
+        const timeText = this.add.text(512, 320, `Your Time: ${this.formatTime(this.elapsedTime)}`, {
             fontFamily: 'Oxanium', fontSize: 24, color: '#ffffff', align: 'left'
         }).setOrigin(0.5);
     
@@ -114,7 +114,7 @@ export class Finish extends Scene {
         ]).setDepth(200);
     
         // Create a hit area for the popup to stop click propagation
-        const popupHitArea = this.add.rectangle(512, 350, 350, 350, 0x000000, 0)
+        const popupHitArea = this.add.rectangle(512, 350, 350, 320, 0x000000, 0)
             .setOrigin(0.5)
             .setDepth(200)
             .setInteractive();
@@ -146,7 +146,7 @@ export class Finish extends Scene {
         if (!this.scoresubmitted) {
             this.createNameInput(popupContainer, fullscreenClickZone);
         } else {
-            this.scoreSubmittedText = this.add.text(512, 400, 'Score already submitted!', {
+            this.scoreSubmittedText = this.add.text(512, 420, 'Score already submitted!', {
                 fontFamily: 'Oxanium', fontSize: 20, color: '#ffffff'
             }).setOrigin(0.5).setDepth(200);
             popupContainer.add(this.scoreSubmittedText);
@@ -158,9 +158,9 @@ export class Finish extends Scene {
             <input type="text" name="nameField" placeholder="Enter your name" style="font-size: 20px; width: 200px; text-align: center;" maxlength="20">
         </div>`;
     
-        this.nameInput = this.add.dom(512, 360).createFromHTML(form);
+        this.nameInput = this.add.dom(512, 370).createFromHTML(form);
     
-        const submitButton = this.add.text(512, 420, 'Submit', {
+        const submitButton = this.add.text(512, 440, 'Submit', {
             fontFamily: 'Oxanium',
             fontSize: 24,
             color: '#ffffff',
@@ -236,7 +236,7 @@ export class Finish extends Scene {
             }
         });
     
-        const loadingMessage = this.add.text(512, 380, 'Loading...', {
+        const loadingMessage = this.add.text(512, 400, 'Loading...', {
             fontFamily: 'Oxanium',
             fontSize: 24,
             color: '#ffffff'
@@ -251,7 +251,7 @@ export class Finish extends Scene {
             });
     
             loadingMessage.destroy();
-            this.submittedText = this.add.text(512, 380, 'Score submitted!', {
+            this.submittedText = this.add.text(512, 400, 'Score submitted!', {
                 fontFamily: 'Oxanium',
                 fontSize: 24,
                 color: '#ffffff'

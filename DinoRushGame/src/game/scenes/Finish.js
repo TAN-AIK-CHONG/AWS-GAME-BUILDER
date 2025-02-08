@@ -160,7 +160,7 @@ export class Finish extends Scene {
     
         this.nameInput = this.add.dom(512, 370).createFromHTML(form);
     
-        const submitButton = this.add.text(512, 440, 'Submit', {
+        const submitButton = this.add.text(512, 435, 'Submit', {
             fontFamily: 'Oxanium',
             fontSize: 24,
             color: '#ffffff',

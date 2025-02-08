@@ -140,14 +140,14 @@ export class MainMenu extends Scene
         });
 
         // Add Leaderboard button
-        const leaderboardButton = this.add.image(925, 40, 'leaderboard').setScale(0.07).setInteractive().setScrollFactor(0).setDepth(100);
+        const leaderboardButton = this.add.image(925, 42, 'leaderboard').setScale(0.07).setInteractive().setScrollFactor(0).setDepth(100);
         this.add.container(0, 0, [leaderboardButton]).setDepth(100);
 
         // Add hover effect
         leaderboardButton.on('pointerover', () => {
             leaderboardButton.setTint(0xdddddd);
 
-            this.leaderboardText = this.add.text(leaderboardButton.x, leaderboardButton.y + 35, 'Leaderboard', {
+            this.leaderboardText = this.add.text(leaderboardButton.x, leaderboardButton.y + 33, 'Leaderboard', {
                 fontFamily: 'Oxanium', fontSize: '18px', fill: '#ffffff', stroke: '#000000', strokeThickness: 2
             }).setOrigin(0.5).setScrollFactor(0).setDepth(100);
         });

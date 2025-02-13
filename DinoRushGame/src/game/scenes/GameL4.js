@@ -101,5 +101,3 @@ export class GameL4 extends GameScene
         }
     }
 }
-
-

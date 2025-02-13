@@ -51,6 +51,7 @@ export class Preloader extends Scene {
         this.load.image('bat3', 'gameObjects/bat3.png');
         this.load.image('gameBackground1', 'backgrounds/gameBackground1.png');
         this.load.image('github', 'UI/github-mark.png');
+        this.load.image('leaderboard', 'UI/leaderboard.png');
         this.load.audio('buttonHoverAudio','audio/click3.ogg');
         this.load.audio('buttonClickAudio', 'audio/click4.ogg');
         this.load.audio('scream', 'audio/scream.wav');

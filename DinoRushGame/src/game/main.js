@@ -14,11 +14,11 @@ import { Finish } from './scenes/Finish';
 // https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: Phaser.AUTO,
-    width: 1024,
-    height: 768,
     scale: {
-        zoom: 0.85
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
     },
+    parent: 'game-container',
     physics: {
         default: 'arcade'
     },

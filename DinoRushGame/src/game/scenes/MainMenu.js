@@ -102,8 +102,8 @@ export class MainMenu extends Scene
 
         // Create About popup
         const aboutPopupContainer = this.createPopup('About', 
-            'This is a side scroller puzzle game created as a personal project by NTU students' +
-            ' Nichlos Lee and Tan Aik Chong. It will no longer be updated. Enjoy!');
+            'This is a 2D side scroller game created as a personal project and will no longer be updated, but contributions are welcome.' +
+            ' Click on the github button on the top right to access the repository and submit pull requests. Enjoy!');
 
         // Create Instructions popup
         const instructionsPopupContainer = this.createPopup('How To Play', 

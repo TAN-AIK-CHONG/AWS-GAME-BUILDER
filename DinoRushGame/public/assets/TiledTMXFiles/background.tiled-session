@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level4.tmx",
+    "activeFile": "level5.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -92,8 +92,8 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 455.25,
-                "y": 153.25
+                "x": 502,
+                "y": 189
             }
         },
         "level3.tmx#tilemap": {
@@ -108,16 +108,34 @@
                 5
             ],
             "scale": 2,
-            "selectedLayer": 0,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 249,
-                "y": 88
+                "x": 670.5,
+                "y": 356.5
             }
         },
         "level4.tmx#tilemap": {
             "scaleInDock": 1
         },
         "level4.tmx#tilemap-characters": {
+            "scaleInDock": 1
+        },
+        "level5.tmx": {
+            "expandedObjectLayers": [
+                4,
+                2
+            ],
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 692,
+                "y": 238
+            }
+        },
+        "level5.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "level5.tmx#tilemap-characters": {
             "scaleInDock": 1
         }
     },
@@ -133,7 +151,8 @@
         "level1.tmx",
         "level2.tmx",
         "level3.tmx",
-        "level4.tmx"
+        "level4.tmx",
+        "level5.tmx"
     ],
     "project": "background.tiled-project",
     "property.type": "bool",
@@ -142,6 +161,7 @@
         "level2.tmx",
         "level3.tmx",
         "level4.tmx",
+        "level5.tmx",
         "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-a.tmx",
         "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-b.tmx",
         "background.tmx"

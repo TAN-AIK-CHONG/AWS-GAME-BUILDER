@@ -1,11 +1,11 @@
 import { EventBus } from '../EventBus';
 import { GameScene } from './GameScene';
 
-export class GameL4 extends GameScene
+export class GameL5 extends GameScene
 {
     constructor ()
     {
-        super('GameL4','GameL5');
+        super('GameL5','Finish');
     }
 
     create (data)
@@ -19,20 +19,18 @@ export class GameL4 extends GameScene
             const bg = this.add.image(i * bgWidth, 550, 'gameBackground1').setScale(3.7).setOrigin(0, 0.5);
             this.backgrounds.push(bg);
         }
-        this.displayMessage('Level 4');
+        this.displayMessage('Level 5');
 
         // Import tilemap
-        const map = this.make.tilemap({ key: 'l4' });
+        const map = this.make.tilemap({ key: 'l5' });
         const tileset = map.addTilesetImage('tilemap', 'tileset');
 
         // Level layers
-        map.createLayer('waterFix', tileset, 0, 0).setScale(3);
         const foreground = map.createLayer('Foreground', tileset, 0, 0).setScale(3);
         map.createLayer('Decorations', tileset, 0, 0).setScale(3);
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
         this.spikeGroup = this.generateSpikes(spikes);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
-
 
         foreground.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
@@ -67,7 +65,13 @@ export class GameL4 extends GameScene
             this.crabLogic(enemy);
         });
         this.batsGroup.children.iterate((bat) => {
-            this.batLogic(bat, 200);
+            this.batLogic(bat, 150);
         });
+    }
+
+    //Override changeScene for last level to go to finish scene
+    changeScene() {
+        this.scene.start('Finish', { time: this.elapsedTime });
+        this.scene.stop();
     }
 }

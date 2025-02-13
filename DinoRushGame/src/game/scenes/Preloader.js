@@ -39,6 +39,7 @@ export class Preloader extends Scene {
         this.load.tilemapTiledJSON('l2', 'jsonmaps/l2.json');
         this.load.tilemapTiledJSON('l3', 'jsonmaps/l3.json');
         this.load.tilemapTiledJSON('l4', 'jsonmaps/l4.json');
+        this.load.tilemapTiledJSON('l5', 'jsonmaps/l5.json');
         this.load.image('tileset', 'tilemap.png');
         this.load.image('characterset', 'tilemap-characters.png');
         this.load.image('heart', 'gameObjects/heart.png');

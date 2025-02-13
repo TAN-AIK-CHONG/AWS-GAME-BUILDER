@@ -4,7 +4,8 @@ const sceneConfig = {
     GameL1: { spawnX: 512, spawnY: 500 },
     GameL2: { spawnX: 340, spawnY: 1038 },
     GameL3: { spawnX: 50, spawnY: 600},
-    GameL4: { spawnX: 144, spawnY: 1130}
+    GameL4: { spawnX: 144, spawnY: 1130},
+    GameL5: { spawnX: 144, spawnY: 1130}
 };
 
 export class GameScene extends Scene

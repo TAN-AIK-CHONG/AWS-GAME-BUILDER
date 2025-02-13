@@ -115,25 +115,29 @@
             }
         },
         "level4.tmx#tilemap": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level4.tmx#tilemap-characters": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level5.tmx": {
             "expandedObjectLayers": [
                 4,
+                8,
                 2
             ],
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 692,
-                "y": 238
+                "x": 1343.3333333333333,
+                "y": 164
             }
         },
         "level5.tmx#tilemap": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level5.tmx#tilemap-characters": {
             "scaleInDock": 1

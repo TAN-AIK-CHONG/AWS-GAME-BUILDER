@@ -383,8 +383,6 @@ export class GameScene extends Scene
     }
 
     generateBatEnemies(enemyLayer){
-        this.physics.world.createDebugGraphic();
-
         this.batsGroup = this.physics.add.group({
             allowGravity: false,  // Set gravity false for whole group
             immovable: true  // Set immovable true for whole group

@@ -1,11 +1,11 @@
 import { Scene, Input } from 'phaser';
 
 const sceneConfig = {
-    GameL1: { spawnX: 512, spawnY: 500 },
-    GameL2: { spawnX: 340, spawnY: 1038 },
-    GameL3: { spawnX: 50, spawnY: 600},
-    GameL4: { spawnX: 144, spawnY: 1130},
-    GameL5: { spawnX: 144, spawnY: 1130}
+    GameL1: { spawnX: 512, spawnY: 505 },
+    GameL2: { spawnX: 340, spawnY: 1045 },
+    GameL3: { spawnX: 50, spawnY: 720},
+    GameL4: { spawnX: 144, spawnY: 1210},
+    GameL5: { spawnX: 110, spawnY: 560}
 };
 
 export class GameScene extends Scene
@@ -137,8 +137,8 @@ export class GameScene extends Scene
 
     changeScene() {
         this.scene.start(this.nextScene, {
-            spawnX: 980,
-            spawnY: 640,
+            spawnX: 110,
+            spawnY: 560,
             elapsedTime: this.elapsedTime 
         });
     }

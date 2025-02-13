@@ -85,7 +85,7 @@ export class MainMenu extends Scene
 
         // Create Play button
         const playButton = this.createButton(0, 0, 'Play', () => {
-            this.scene.start('GameL1',{spawnX: 512, spawnY: 500});
+            this.scene.start('GameL1',{spawnX: 512, spawnY: 505});
         });
 
         // Create Instructions button

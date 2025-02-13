@@ -386,33 +386,47 @@ export class GameScene extends Scene
         this.physics.world.createDebugGraphic();
 
         this.batsGroup = this.physics.add.group({
-            allowGravity: false  // Set gravity false for whole group
+            allowGravity: false,  // Set gravity false for whole group
+            immovable: true  // Set immovable true for whole group
         });
         
         enemyLayer.forEach((enemyObj) => {
             const enemy = this.physics.add.sprite(enemyObj.x * 3, enemyObj.y * 3);
             enemy.setOrigin(0.5); 
             enemy.body.setCollideWorldBounds(true);
+            enemy.body.setBounce(0);
             enemy.setScale(3);
             // Set hitbox size and offset
             enemy.body.setSize(16, 16);  // Adjust size as needed
             enemy.body.setOffset(4, 4);  // Adjust offset as needed
             enemy.play('batFly'); 
-
-             // Add vertical oscillation
-            this.tweens.add({
-                targets: enemy,
-                y: enemy.y + 500, // Move 50 pixels down
-                duration: 1000,
-                yoyo: true,
-                repeat: -1,
-                ease: 'Sine.easeInOut'
-            });
             
-            // Remove individual gravity setting since group handles it
             this.batsGroup.add(enemy);
         });
     
         return this.batsGroup;
+    }
+
+    batLogic(enemy, distance) {
+        // Store initial Y position if not already stored
+        if (enemy.startY === undefined) {
+            enemy.startY = enemy.y;
+            enemy.isMovingDown = true;
+        }
+    
+        // Moving down
+        if (enemy.isMovingDown) {
+            enemy.setVelocityY(250);
+            if (enemy.y >= enemy.startY + distance) {
+                enemy.isMovingDown = false;
+            }
+        } 
+        // Moving up
+        else {
+            enemy.setVelocityY(-250);
+            if (enemy.y <= enemy.startY) {
+                enemy.isMovingDown = true;
+            }
+        }
     }
 }

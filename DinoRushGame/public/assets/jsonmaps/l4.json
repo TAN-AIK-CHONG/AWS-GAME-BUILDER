@@ -16,8 +16,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":232,
-                 "y":338.667
+                 "x":245,
+                 "y":296.167
                 }, 
                 {
                  "gid":205,
@@ -28,8 +28,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":267.5,
-                 "y":128
+                 "x":299,
+                 "y":43.5
                 }, 
                 {
                  "gid":205,
@@ -40,8 +40,8 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":591,
-                 "y":201
+                 "x":609,
+                 "y":122
                 }, 
                 {
                  "gid":205,
@@ -52,12 +52,12 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":735,
-                 "y":272.5
+                 "x":757,
+                 "y":271.5
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -76,7 +76,7 @@
                  "visible":true,
                  "width":24,
                  "x":792,
-                 "y":422.646024174752
+                 "y":422.646
                 }, 
                 {
                  "gid":203,
@@ -99,12 +99,12 @@
                  "type":"",
                  "visible":true,
                  "width":24,
-                 "x":491.441920971327,
-                 "y":394.851319854735
+                 "x":491.442,
+                 "y":394.851
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -141,7 +141,7 @@
          "name":"waterFix",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":50,
          "x":0,
          "y":0
@@ -179,7 +179,7 @@
          "name":"Flag",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":50,
          "x":0,
          "y":0
@@ -217,7 +217,7 @@
          "name":"Spikes",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":50,
          "x":0,
          "y":0
@@ -303,7 +303,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

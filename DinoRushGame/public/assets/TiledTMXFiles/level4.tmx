@@ -404,18 +404,18 @@
  <tileset firstgid="181" name="tilemap-characters" tilewidth="24" tileheight="24" spacing="1" tilecount="27" columns="9">
   <image source="../tilemap-characters.png" width="224" height="74"/>
  </tileset>
- <objectgroup id="2" name="BatEnemies" visible="0">
-  <object id="11" gid="206" x="232" y="338.667" width="24" height="24"/>
-  <object id="16" gid="205" x="267.5" y="128" width="24" height="24"/>
-  <object id="18" gid="205" x="591" y="201" width="24" height="24"/>
-  <object id="19" gid="205" x="735" y="272.5" width="24" height="24"/>
+ <objectgroup id="2" name="BatEnemies">
+  <object id="11" gid="206" x="245" y="296.167" width="24" height="24"/>
+  <object id="16" gid="205" x="317.5" y="42.5" width="24" height="24"/>
+  <object id="18" gid="205" x="609" y="122" width="24" height="24"/>
+  <object id="19" gid="205" x="757" y="271.5" width="24" height="24"/>
  </objectgroup>
- <objectgroup id="5" name="CrabEnemies" visible="0">
+ <objectgroup id="5" name="CrabEnemies">
   <object id="5" gid="203" x="792" y="422.646" width="24" height="24"/>
   <object id="7" gid="203" x="233.333" y="441.333" width="24" height="24"/>
   <object id="28" gid="203" x="491.442" y="394.851" width="24" height="24"/>
  </objectgroup>
- <layer id="11" name="waterFix" width="50" height="27" visible="0">
+ <layer id="11" name="waterFix" width="50" height="27">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -446,7 +446,7 @@
 123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,123,56,123,123,123,123,123,123,123
 </data>
  </layer>
- <layer id="6" name="Flag" width="50" height="27" visible="0">
+ <layer id="6" name="Flag" width="50" height="27">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -477,7 +477,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="Spikes" width="50" height="27" visible="0">
+ <layer id="3" name="Spikes" width="50" height="27">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -539,7 +539,7 @@
 34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34
 </data>
  </layer>
- <objectgroup id="10" name="Gems" visible="0">
+ <objectgroup id="10" name="Gems">
   <object id="4" gid="68" x="883" y="413" width="18" height="18"/>
   <object id="14" gid="68" x="306" y="214.5" width="18" height="18"/>
   <object id="24" gid="68" x="18.3333" y="251" width="18" height="18"/>

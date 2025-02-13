@@ -48,7 +48,9 @@ export class GameL4 extends GameScene
         this.physics.add.collider(this.dino, foreground);
         this.physics.add.collider(this.dino, flag, this.handleFlag, null, this);
         this.physics.add.collider(this.crabs, foreground);
+        this.physics.add.collider(this.bats, foreground);
         this.physics.add.collider(this.dino, this.crabs, this.loseLife, null, this);
+        this.physics.add.collider(this.dino, this.bats, this.loseLife, null, this);
         this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
         this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
         
@@ -64,10 +66,9 @@ export class GameL4 extends GameScene
         this.crabs.children.iterate((enemy) => {
             this.crabLogic(enemy);
         });
-        // this.batsGroup.children.iterate((bat) => {
-        //     this.batLogic(bat);
-        // });
-   
+        this.batsGroup.children.iterate((bat) => {
+            this.batLogic(bat, 200);
+        });
     }
 
     //Override changeScene for last level to go to finish scene

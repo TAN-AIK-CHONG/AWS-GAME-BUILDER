@@ -29,13 +29,13 @@ export class GameL3 extends GameScene {
         const spikes = map.createLayer('Spikes', tileset, 0, 0).setScale(3);
         this.spikeGroup = this.generateSpikes(spikes);
         const flag = map.createLayer('Flag', tileset, 0, 0).setScale(3);
-        const enemiesObjectLayer = map.getObjectLayer('Enemies').objects;
 
         foreground.setCollisionByProperty({ collides: true });
         flag.setCollisionByProperty({ flag: true });
         
         // Objects
         this.generateGems(map);
+        const enemiesObjectLayer = map.getObjectLayer('Enemies').objects;
         this.crabs = this.generateCrabEnemies(enemiesObjectLayer);
         
         // Collisions

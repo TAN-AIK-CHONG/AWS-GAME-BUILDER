@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level3.tmx",
+    "activeFile": "level1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -51,11 +51,11 @@
             "scaleInDock": 1
         },
         "level1.tmx": {
-            "scale": 4,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 450.125,
-                "y": 135
+                "x": 628,
+                "y": 95.33333333333334
             }
         },
         "level1.tmx#tilemap": {
@@ -72,7 +72,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 720.5,
-                "y": 225
+                "y": 224.5
             }
         },
         "level2.tmx#tilemap": {
@@ -92,8 +92,8 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 111.5,
-                "y": 143.75
+                "x": 455.25,
+                "y": 153.25
             }
         },
         "level3.tmx#tilemap": {
@@ -104,11 +104,14 @@
             "scaleInDock": 1.5
         },
         "level4.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
             "scale": 2,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 186.5,
-                "y": 210.75
+                "x": 450,
+                "y": 243.25
             }
         },
         "level4.tmx#tilemap": {
@@ -129,14 +132,16 @@
     "openFiles": [
         "level1.tmx",
         "level2.tmx",
-        "level3.tmx"
+        "level3.tmx",
+        "level4.tmx"
     ],
     "project": "background.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "level1.tmx",
-        "level2.tmx",
+        "level4.tmx",
         "level3.tmx",
+        "level2.tmx",
+        "level1.tmx",
         "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-a.tmx",
         "C:/Users/aikch/OneDrive/Documents/Personal Projects/Dino-Rush-Game/DinoRushGame/public/assets/moreAssets/kenney_pixel-platformer/Tiled/tilemap-example-b.tmx",
         "background.tmx"

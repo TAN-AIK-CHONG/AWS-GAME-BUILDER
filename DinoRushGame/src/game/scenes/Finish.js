@@ -98,7 +98,7 @@ export class Finish extends Scene {
             .setDepth(199)
             .setInteractive();
     
-        const popupBackground = this.add.rectangle(512, 350, 350, 320, 0x000000, 0.95).setOrigin(0.5);
+        const popupBackground = this.add.rectangle(512, 350, 380, 320, 0x000000, 0.95).setOrigin(0.5);
         const popupTitle = this.add.text(512, 250, "Submit Score", {
             fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'left'
         }).setOrigin(0.5);
@@ -244,10 +244,11 @@ export class Finish extends Scene {
         popupContainer.add(loadingMessage);
     
         try {
+            // Try to add the document
             await addDoc(collection(this.db, 'leaderboard'), {
                 name: playerName,
                 time: this.elapsedTime,
-                timestamp: Timestamp.now() // Add submission timestamp
+                timestamp: Timestamp.now()
             });
     
             loadingMessage.destroy();
@@ -269,12 +270,25 @@ export class Finish extends Scene {
         } catch (error) {
             console.error('Error submitting score:', error);
             loadingMessage.destroy();
-            const errorText = this.add.text(512, 380, 'Failed to submit score!', {
+            
+            // Show specific error message based on the error
+            let errorMessage = 'Failed to submit score!';
+            if (error.code === 'permission-denied') {
+                errorMessage = 'Please avoid offensive language!';
+            }
+            
+            const errorText = this.add.text(512, 380, errorMessage, {
                 fontFamily: 'Oxanium',
-                fontSize: 24,
+                fontSize: 22,
                 color: '#ff0000'
             }).setOrigin(0.5).setDepth(200);
             popupContainer.add(errorText);
+            
+            // Add back the input field and submit button after 2 seconds
+            this.time.delayedCall(2000, () => {
+                errorText.destroy();
+                this.createNameInput(popupContainer, fullscreenClickZone);
+            });
         }
     }
     

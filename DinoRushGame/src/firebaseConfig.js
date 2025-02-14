@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDaqgpvhYNs80XnfnPCQ3W0ewvQUhLzP80",
-    authDomain: "dinorush-leaderboard.firebaseapp.com",
-    projectId: "dinorush-leaderboard",
-    storageBucket: "dinorush-leaderboard.firebasestorage.app",
-    messagingSenderId: "542672143936",
-    appId: "1:542672143936:web:4934a18a823ed2858901a5",
-    measurementId: "G-TET1KYMK2K"
-  };
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY, 
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+};
 
 export const getFirebaseApp = () => initializeApp(firebaseConfig);

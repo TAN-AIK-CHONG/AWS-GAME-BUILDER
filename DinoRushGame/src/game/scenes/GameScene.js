@@ -267,12 +267,17 @@ export class GameScene extends Scene
     {
         if (this.gems === 3) {
             this.sound.play('nextlevel');
-            const spawnData = sceneConfig[this.nextScene];
-            this.scene.start(this.nextScene, {
-                spawnX: spawnData.spawnX,
-                spawnY: spawnData.spawnY,
-                elapsedTime: this.elapsedTime 
-            });
+            if(this.nextScene === 'Finish'){
+                this.scene.start('Finish', { time: this.elapsedTime });
+            }
+            else{
+                const spawnData = sceneConfig[this.nextScene];
+                this.scene.start(this.nextScene, {
+                    spawnX: spawnData.spawnX,
+                    spawnY: spawnData.spawnY,
+                    elapsedTime: this.elapsedTime 
+                });
+            }
         }
         else {
             this.displayMessage('Not enough gems!');
@@ -372,6 +377,7 @@ export class GameScene extends Scene
 
     bounceDino(dino, bouncepad) {
         dino.setVelocityY(-800); // Adjust bounce strength
+        this.sound.play('bounce');
         bouncepad.setTexture('bouncepad2');
     
         // Optional: revert the texture after delay

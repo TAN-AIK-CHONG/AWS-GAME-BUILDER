@@ -59,6 +59,7 @@ export class Preloader extends Scene {
         this.load.audio('buttonClickAudio', 'audio/click4.ogg');
         this.load.audio('scream', 'audio/scream.wav');
         this.load.audio('jump', 'audio/Jump.wav');
+        this.load.audio('bounce', 'audio/bounce.mp3');
         this.load.audio('hitDamage', 'audio/hitdamage.mp3');
         this.load.audio('pickupgem', 'audio/pickupgem.mp3');
         this.load.audio('nextlevel', 'audio/nextlevel.mp3');

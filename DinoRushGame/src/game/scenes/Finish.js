@@ -98,7 +98,7 @@ export class Finish extends Scene {
             .setDepth(199)
             .setInteractive();
     
-        const popupBackground = this.add.rectangle(512, 350, 380, 320, 0x000000, 0.95).setOrigin(0.5);
+        const popupBackground = this.add.rectangle(512, 340, 380, 320, 0x000000, 0.95).setOrigin(0.5);
         const popupTitle = this.add.text(512, 250, "Submit Score", {
             fontFamily: 'Oxanium', fontSize: 40, color: '#ffffff', align: 'left'
         }).setOrigin(0.5);

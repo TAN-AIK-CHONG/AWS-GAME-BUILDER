@@ -31,7 +31,7 @@ We have a leaderboard hosted using Firebase Firestore. Feel free to try your bes
 - **UI Pack - Pixel Adventure** by **Kenney**, available for free download under the CC0 license [here](https://kenney.nl/assets/ui-pack-pixel-adventure).  
 
 ### 🎵 Audio
-- **"8-bit Surf"** by **David Renda**, available for free download from Fesliyan Studios [here](https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-surf/568). (Background music) Used in this project under the terms provided by the creator.
+- **"8-bit Surf"** by **David Renda**, available for free download from [Fesliyan Studios](https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-surf/568). (Background music) Used in this project under the terms provided by the creator.
 - **UI Sound Effects** from **SmartSoundFX**, used in this project under the licensing terms provided by [SmartSoundFX](https://soundcloud.com/smartsoundfx).
 - **UI Audio** by **Kenney**, available for free download under the CC0 license [here](https://kenney.nl/assets/ui-audio).
 

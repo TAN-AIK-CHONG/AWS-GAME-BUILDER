@@ -92,8 +92,8 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 502,
-                "y": 189
+                "x": 455.25,
+                "y": 153.25
             }
         },
         "level3.tmx#tilemap": {
@@ -110,8 +110,8 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 670.5,
-                "y": 356.5
+                "x": 450,
+                "y": 243.25
             }
         },
         "level4.tmx#tilemap": {
@@ -128,11 +128,11 @@
                 8,
                 2
             ],
-            "scale": 1.5,
-            "selectedLayer": 3,
+            "scale": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1343.3333333333333,
-                "y": 164
+                "x": 1673.5,
+                "y": 75
             }
         },
         "level5.tmx#tilemap": {

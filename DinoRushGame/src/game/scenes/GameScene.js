@@ -344,6 +344,32 @@ export class GameScene extends Scene
         return this.spikeGroup;
     }
 
+    generateBouncepads(map){
+        // Debug: Check if map and Gems layer exist
+        console.log('Map:', map);
+        console.log('Layers:', map.objects);
+        
+        try {
+            const bouncepadObjectLayer = map.getObjectLayer('Bouncepads');
+            if (!bouncepadObjectLayer) {
+                console.error('No bouncepads layer found in map');
+                return;
+            }
+    
+            this.bouncepadGroup = this.physics.add.group();
+    
+            bouncepadObjectLayer.objects.forEach((pad) => {
+                const bouncepad = this.bouncepadGroup.create(pad.x * 3, pad.y * 3, 'bouncepad1');
+                bouncepad.setOrigin(0, 1);
+                bouncepad.setScale(3);
+                bouncepad.setImmovable(true);
+                bouncepad.body.setAllowGravity(false);
+            });
+        } catch (error) {
+            console.error('Error generating bouncepads:', error);
+        }
+    }
+
     generateCrabEnemies(enemyLayer){
         this.enemiesGroup = this.physics.add.group();
         enemyLayer.forEach((enemyObj) => {

@@ -37,6 +37,7 @@ export class GameL5 extends GameScene
 
         // Objects
         this.generateGems(map);
+        this.generateBouncepads(map);
         const crabsObjectLayer = map.getObjectLayer('CrabEnemies').objects;
         this.crabs = this.generateCrabEnemies(crabsObjectLayer);
         const batsObjectLayer = map.getObjectLayer('BatEnemies').objects;

@@ -52,6 +52,7 @@ export class GameL5 extends GameScene
         this.physics.add.collider(this.dino, this.bats, this.loseLife, null, this);
         this.physics.add.collider(this.dino, this.spikeGroup, this.loseLife, null, this);
         this.physics.add.overlap(this.dino, this.gemGroup, this.collectGem, null, this);
+        this.physics.add.overlap(this.dino, this.bouncepadGroup, this.bounceDino, null, this);
         
         //set boundaries
         this.cameras.main.setBounds(0, 0, map.widthInPixels * 3, map.heightInPixels * 3);

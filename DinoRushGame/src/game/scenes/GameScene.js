@@ -370,6 +370,16 @@ export class GameScene extends Scene
         }
     }
 
+    bounceDino(dino, bouncepad) {
+        dino.setVelocityY(-800); // Adjust bounce strength
+        bouncepad.setTexture('bouncepad2');
+    
+        // Optional: revert the texture after delay
+        this.time.delayedCall(200, () => {
+            bouncepad.setTexture('bouncepad1');
+        });
+    }
+
     generateCrabEnemies(enemyLayer){
         this.enemiesGroup = this.physics.add.group();
         enemyLayer.forEach((enemyObj) => {

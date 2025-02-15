@@ -1,5 +1,5 @@
 # Dino Rush 🦖
-Dino Rush is a 2D platformer game with the objective of collecting gems to progress to the next level.  Players are encouraged to try and speed run through the game and aim for faster clear times.  This project is still currently in production.
+Dino Rush is a 2D platformer game with the objective of collecting gems to progress to the next level.  Players are encouraged to try and speed run through the game and aim for faster clear times.  There are currently 5 levels.
 
 <div align="center">
   <img src="sampleGIF.gif" alt="Demo GIF" />
@@ -8,6 +8,8 @@ Dino Rush is a 2D platformer game with the objective of collecting gems to progr
 <p align="center">
   <a href="https://dinorush.netlify.app" target="_blank"><strong>🎮 PLAY THE GAME ON BROWSER NOW 🎮</strong></a>
 </p>
+<br>
+<p>**IMPORTANT NOTE:** Game only runs on **Chrome**, **Firefox** and **Edge**. Safari is not supported at the moment. We are actively working on fixing the issue. Stay tuned for updates. </strong></p>
 
 ---
 

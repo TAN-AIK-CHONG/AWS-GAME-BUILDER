@@ -9,7 +9,7 @@ Dino Rush is a 2D platformer game with the objective of collecting gems to progr
   <a href="https://dinorush.netlify.app" target="_blank"><strong>🎮 PLAY THE GAME ON BROWSER NOW 🎮</strong></a>
 </p>
 <br>
-<p>**IMPORTANT NOTE:** Game only runs on **Chrome**, **Firefox** and **Edge**. Safari is not supported at the moment. We are actively working on fixing the issue. Stay tuned for updates. </strong></p>
+<p><strong>IMPORTANT NOTE:</strong> Game only runs on <strong>Chrome</strong>, <strong>Firefox</strong> and <strong>Edge</strong>. Safari is not supported at the moment. We are actively working on fixing the issue. Stay tuned for updates. </strong></p>
 
 ---
 
